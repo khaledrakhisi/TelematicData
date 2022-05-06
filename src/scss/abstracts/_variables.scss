@@ -1,0 +1,89 @@
+/* Color Palette */
+$primaryColor: #2326ef;
+$secondaryColor: #a8a8a8;
+
+html {
+  //light theme
+  --bgc: #f2f2f2;
+  --card-bgc: #f9f9fa;
+  --text-color: #424750;
+  //light theme status
+  --approved-bgc: rgba(86, 240, 0, 0.3);
+  --approved-textColor: #246500;
+  --pending-bgc: rgba(45, 204, 255, 0.3);
+  --pending-textColor: #086785;
+  --rejected-bgc: rgba(255, 56, 56, 0.3);
+  --rejected-textColor: #9d0e0e;
+}
+
+html[theme="dark"] {
+  //dark theme
+  --bgc: #283036;
+  --card-bgc: #1e2529;
+  --text-color: #ebebeb;
+
+  //light theme status
+  --approved-bgc: rgba(66, 171, 8, 0.3);
+  --approved-textColor: #d0ffb6;
+  --pending-bgc: rgba(45, 204, 255, 0.3);
+  --pending-textColor: #a5e9ff;
+  --rejected-bgc: rgba(255, 56, 56, 0.3);
+  --rejected-textColor: #f2bebe;
+}
+
+/* ****Font family**** */
+$fontFamily: "Roboto", Arial, Helvetica, sans-serif;
+
+//Body font sizes
+$fontSizeBodySmall: 12px;
+$lineHeightBodySmall: 16px;
+$fontSizeNormal: 14px;
+$fontSizeBodyMedium: 16px;
+$lineHeightBodyMedium: 24px;
+$fontSizeBodyLarge: 35px;
+$lineHeightBodyLarge: 35px;
+//Headline font sizes
+$fontSizeHeadlineSmall: 12px;
+$fontSizeHeadlineMedium: 25px;
+$fontSizeHeadlineLarge: 37px;
+//Display font sizes
+$fontSizeDisplaySmall: 64px;
+//helper font sizes
+$fontSizeTableStatus: 9px;
+
+/* ****Shadows**** */
+$mainBoxShadow: 0 1px 3px 0 rgba(37, 39, 49, 0.1);
+$secondBoxShadow: 0px 2px 2px #00000029;
+
+/* ****Border radius**** */
+$smallBorderRadius: 4px; //for buttons
+$mediumBorderRadius: 12px; //for boxes
+$largeBorderRadius: 24px; //for tables and main section in tablet and mobile.
+
+/* ****Spacing **** */
+$extraSmallSpacing: 4px;
+$smallSpacing: 8px;
+$mediumSpacing: 12px;
+$largeSpacing: 24px;
+$extraLargeSpacing: 30px;
+
+/* **** Device width **** */
+//This design is mobile first
+$mobile-width: 576px;
+$tablet-width: 768px;
+$desktop-width: 992px;
+$largeDesktop-width: 1200px;
+
+/* **** helper variable **** */
+$hamburgerIconSize: 25px;
+$spacing: 60px;
+$mobileSpacing: 16px;
+$mainHeaderSize: 90px;
+$mainFooterSize: 165px;
+
+$backdropTrasitionSpeed: 400ms;
+
+$listHeight: 300px;
+$textboxWidth: 130px;
+
+$formBorder: 1px solid #000;
