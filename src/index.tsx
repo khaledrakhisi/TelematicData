@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import { LoginContextProvider } from "./store/loginContext";
+import { SidebarContextProvider } from "./store/sidebarContext";
+import { ThemeContextProvider } from "./store/themeContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
@@ -9,7 +12,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <LoginContextProvider>
+      <ThemeContextProvider>
+        <SidebarContextProvider>
+          <App />
+        </SidebarContextProvider>
+      </ThemeContextProvider>
+    </LoginContextProvider>
   </React.StrictMode>
 );
 

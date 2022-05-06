@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import LoginContext from "../store/loginContext";
-
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+
+import LoginContext from "../store/loginContext";
 
 const AuthLayout = () => {
   const location = useLocation();
