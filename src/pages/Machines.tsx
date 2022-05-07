@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { mocked_telematicData } from "../apis/data";
 // import CustomTable from "../components/CustomTable";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { machinesHeader } from "../constants/tables";
+// import { machinesHeader } from "../constants/tables";
 import useFetch from "../hooks/useFetch";
 import { IMachine } from "../interfaces/IMachine";
 import { ITelematicData } from "../interfaces/ITelematicData";

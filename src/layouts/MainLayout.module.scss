@@ -35,18 +35,3 @@
     }
   }
 }
-
-html[dir="rtl"] {
-  .main__content {
-    padding: 1rem 17rem 1rem 2.5rem;
-    &.close_sidebar {
-      padding: 1rem 6rem 1rem 2rem;
-      @include tablet {
-        padding: 0.8rem 2rem 0.8rem 2rem;
-      }
-    }
-    @include tablet {
-      padding: 0.8rem 2rem;
-    }
-  }
-}

@@ -1,11 +1,12 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+
+import { CustomMap } from "../components/CustomMap";
 
 function Dashboard() {
-  const { t } = useTranslation();
   return (
     <section>
-      <h2 className="title">{t("dashboard")}</h2>
+      <h2 className="title">Dashboard</h2>
+      <CustomMap />
     </section>
   );
 }

@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   padding-bottom: 1rem;
   border-bottom: 3px solid gainsboro;
-  margin-bottom: 4rem;
+  margin-bottom: $mediumSpacing;
   &_left {
     @include flex(center, flex-start);
     flex-wrap: wrap;
@@ -41,11 +41,5 @@
   @media screen and (max-width: 975px) {
     display: block;
     margin: 0.5rem 0 0;
-  }
-}
-
-html[dir="rtl"] {
-  .topNav_left_menu_icon {
-    transform: rotate(180deg);
   }
 }

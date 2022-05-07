@@ -4,12 +4,12 @@
 .sidebar {
   @include flex(stretch, center);
   flex-direction: column;
-  background-color: var(--bgc);
+  background-color: var(--sidebar);
   color: var(--text-color) !important;
   // border: 1px solid blue;
   width: $sideBarOpenWidth;
   height: 100vh;
-  position: fixed;
+  // position: fixed;
   top: 0;
   transition: all 0.5s ease-in-out;
   z-index: 200;
@@ -19,14 +19,14 @@
   &.sidebar_close {
     width: 50px;
     @include tablet {
-      width: 100%;
+      // width: 100%;
     }
   }
 
   @include tablet {
-    width: 100vw;
-    z-index: 1;
-    background-color: var(--secondaryColor);
+    // width: 100vw;
+    // z-index: 1;
+    background-color: var(--sidebar);
     color: #ebebeb !important;
   }
 
@@ -39,7 +39,7 @@
     img {
       --size: 7.5rem;
       width: var(--size);
-      height: var(--size);
+      // height: var(--size);
     }
 
     @include tablet {

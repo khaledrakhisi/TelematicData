@@ -26,12 +26,3 @@
     }
   }
 }
-
-html[dir="rtl"] {
-  .form__control {
-    label {
-      left: auto;
-      right: 10px;
-    }
-  }
-}

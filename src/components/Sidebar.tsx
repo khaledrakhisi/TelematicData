@@ -11,7 +11,7 @@ import SidebarContext from "../store/sidebarContext";
 
 import classes from "./Sidebar.module.scss";
 
-function Sidebar() {
+export const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const { width } = useWindowSize();
   const location = useLocation();
@@ -82,6 +82,4 @@ function Sidebar() {
       </div>
     </div>
   );
-}
-
-export default Sidebar;
+};
