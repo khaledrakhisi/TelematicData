@@ -1,17 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 
+import { IMappable } from "../interfaces/IMappable";
+
 import classes from "./CustomMap.module.scss";
+import MapContext from "../store/mapContext";
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoia2hhbGVkciIsImEiOiJja3BzN2t1OHMwZHQxMm5vY25tY3Q3NHI5In0.akzVvXBLn643NdB94sZaGg";
 
-export const CustomMap = () => {
+interface ICustomMapProps {
+  defaultPosition: IMappable;
+  zoomLevel: number;
+}
+
+export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
+  defaultPosition,
+  zoomLevel,
+}) => {
   const mapContainer = useRef(null);
   const map = useRef<mapboxgl.Map | null>(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
+  const [lng, setLng] = useState(defaultPosition.Location.Longitude);
+  const [lat, setLat] = useState(defaultPosition.Location.Latitude);
+  const [zoom, setZoom] = useState(zoomLevel);
+  const { objects } = useContext(MapContext);
 
   useEffect(() => {
     if (map.current) {

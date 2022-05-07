@@ -1,13 +1,9 @@
 import { IMachine } from "./IMachine";
+import { IMappable } from "./IMappable";
 
-export interface ITelematicData {
+export interface ITelematicData extends IMappable {
   EquipmentHeader: IMachine;
-  Location: {
-    Latitude: number;
-    Longitude: number;
-    Altitude: number;
-    AltitudeUnits: string[10];
-  };
+  // Location: IMappable;
   CumulativeIdleHours: {
     Hour: number;
   };
