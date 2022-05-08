@@ -4,10 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useWindowSize } from "usehooks-ts";
 
-import { sidebarNav } from "../config/sidebarNav";
-import { images } from "../constants/images";
-import LoginContext from "../store/loginContext";
-import SidebarContext from "../store/sidebarContext";
+import { sidebarNav } from "../../config/sidebarNav";
+import { images } from "../../constants/images";
+import LoginContext from "../../store/loginContext";
+import SidebarContext from "../../store/sidebarContext";
 
 import classes from "./Sidebar.module.scss";
 

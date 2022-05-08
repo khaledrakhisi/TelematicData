@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
-import { Sidebar } from "../components/Sidebar";
 import TopNav from "../components/TopNav";
+import { Sidebar } from "../components/ui/Sidebar";
 import { sidebarNav } from "../config/sidebarNav";
 import SidebarContext from "../store/sidebarContext";
 

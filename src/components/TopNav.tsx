@@ -4,7 +4,7 @@ import { useWindowSize } from "usehooks-ts";
 
 import SidebarContext from "../store/sidebarContext";
 
-import SearchBox from "./SearchBox";
+import SearchBox from "./ui/SearchBox";
 import TopNavRightBox from "./TopNavRightBox";
 
 import classes from "./TopNav.module.scss";

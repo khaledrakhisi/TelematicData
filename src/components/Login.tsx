@@ -2,8 +2,8 @@ import React, { useContext, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
-import Button from "../components/Button";
-import Input from "../components/Input";
+import Button from "../components/ui/Button";
+import Input from "../components/ui/Input";
 import { images } from "../constants/images";
 // import langContextObj from "../../store/langContext";
 import LoginContext from "../store/loginContext";

@@ -3,6 +3,8 @@
 .container {
   position: relative;
   width: 100%;
+  height: 450px;
+  overflow: hidden;
 
   .mapContainer {
     height: 500px;
@@ -21,4 +23,24 @@
     margin: $mediumSpacing;
     border-radius: 4px;
   }
+}
+
+.markerBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mapboxgl-canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

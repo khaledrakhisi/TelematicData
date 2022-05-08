@@ -2,8 +2,8 @@ import React from "react";
 import ReactDom from "react-dom";
 import { useTranslation } from "react-i18next";
 
-import Button from "../components/Button";
-import Card from "../components/Card";
+import Button from "./ui/Button";
+import Card from "./ui/Card";
 
 import classes from "./Modal.module.scss";
 

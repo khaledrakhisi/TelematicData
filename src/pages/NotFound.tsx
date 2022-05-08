@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import Button from "../components/Button";
+import Button from "../components/ui/Button";
 
 function NotFound() {
   const { t } = useTranslation();

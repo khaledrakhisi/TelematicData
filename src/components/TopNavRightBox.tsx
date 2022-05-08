@@ -1,8 +1,8 @@
 import React from "react";
 
+import ThemeBox from "./ui/ThemeBox";
 import LangBox from "./LangBox";
 import Profile from "./Profile";
-import ThemeBox from "./ThemeBox";
 
 import classes from "./TopNavRightBox.module.scss";
 

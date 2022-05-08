@@ -2,12 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { LoginContextProvider } from "./store/loginContext";
+import { MapContextProvider } from "./store/mapContext";
 import { SidebarContextProvider } from "./store/sidebarContext";
 import { ThemeContextProvider } from "./store/themeContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-import "mapbox-gl/dist/mapbox-gl.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +16,9 @@ root.render(
     <LoginContextProvider>
       <ThemeContextProvider>
         <SidebarContextProvider>
-          <App />
+          <MapContextProvider>
+            <App />
+          </MapContextProvider>
         </SidebarContextProvider>
       </ThemeContextProvider>
     </LoginContextProvider>
