@@ -1,5 +1,4 @@
 import React, { useImperativeHandle, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import classes from "./Input.module.scss";
 
@@ -40,10 +39,10 @@ const Input = React.forwardRef<IImperativeHandler, Props>((props, ref) => {
       value: value,
     };
   });
-  const { t } = useTranslation();
+
   return (
     <div className={`${classes.form__control} ${props.classes}`}>
-      <label htmlFor={props.id}>{t(`${props.id}`)}</label>
+      <label htmlFor={props.id}>{`${props.id}`}</label>
       <input
         ref={inputRef}
         id={props.id}

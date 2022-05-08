@@ -1,12 +1,12 @@
 import { useEffect, useReducer, useRef } from "react";
 
+import { fetchAllData } from "../apis/api";
+
 interface State<T> {
   data?: T;
   error?: Error;
   status?: string;
 }
-
-type Cache<T> = { [url: string]: T };
 
 // discriminated union type
 type Action<T> =
@@ -14,12 +14,7 @@ type Action<T> =
   | { type: "fetched"; payload: T }
   | { type: "error"; payload: Error };
 
-function useFetch<T = unknown>(url?: string, options?: any): State<T> {
-  const cache = useRef<Cache<T>>({});
-
-  // Used to prevent state update if the component is unmounted
-  const cancelRequest = useRef<boolean>(false);
-
+function useFetch<T = unknown>(url?: string): State<T> {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
@@ -50,46 +45,28 @@ function useFetch<T = unknown>(url?: string, options?: any): State<T> {
     const fetchData = async () => {
       dispatch({ type: "loading" });
 
-      // If a cache exists for this url, return it
-      if (cache.current[url]) {
-        dispatch({ type: "fetched", payload: cache.current[url] });
-        return;
-      }
-
       try {
-        const response = await fetch(url, options);
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        if (response.ok && response.status !== 200) {
-          // console.log(response.status);
-          throw new Error("302 error happen. Maybe you forgat .json");
-        }
+        // const response = await fetch(url, options);
+        const response = await fetchAllData();
 
-        const data = (await response.json()) as T;
-        cache.current[url] = data;
-        if (cancelRequest.current) {
-          return;
-        }
+        // if (!response.ok) {
+        //   throw new Error(response.statusText);
+        // }
+        // if (response.ok && response.status !== 200) {
+        //   // console.log(response.status);
+        //   throw new Error("302 error happen. Maybe you forgat .json");
+        // }
 
-        dispatch({ type: "fetched", payload: data });
+        // const data = (await response.json()) as T;
+        const data = response;
+
+        dispatch({ type: "fetched", payload: data as any });
       } catch (error) {
-        if (cancelRequest.current) {
-          return;
-        }
-
         dispatch({ type: "error", payload: error as Error });
       }
     };
 
     void fetchData();
-
-    // Use the cleanup function for avoiding a possibly...
-    // ...state update after the component was unmounted
-    return () => {
-      cancelRequest.current = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   return state;

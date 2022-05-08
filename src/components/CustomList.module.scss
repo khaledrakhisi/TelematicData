@@ -18,6 +18,7 @@
     &__item {
       @include flex(column);
       margin: 0 $mediumSpacing;
+      cursor: pointer;
       & > img {
         border: 1px solid var(--secondaryColor);
         padding: $smallSpacing;

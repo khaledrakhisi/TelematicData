@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { useTranslation } from "react-i18next";
 
 import Button from "./ui/Button";
 import Card from "./ui/Card";
@@ -26,8 +25,6 @@ interface IModal {
 }
 
 const ModalOverlay: React.FC<IModal> = (props) => {
-  const { t } = useTranslation();
-
   return (
     <Card>
       <div className={classes.modal}>
@@ -39,10 +36,10 @@ const ModalOverlay: React.FC<IModal> = (props) => {
         </div>
         <footer className={classes.actions}>
           <Button outline={true} onClick={props.onConfirm}>
-            {t("cancel")}
+            {"cancel"}
           </Button>
           <button className={classes.delete} onClick={props.onConfirm}>
-            {t("delete")}
+            {"delete"}
           </button>
         </footer>
       </div>

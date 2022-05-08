@@ -1,31 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
-import { mocked_telematicData } from "../apis/data";
 import { CustomList } from "../components/CustomList";
 import { CustomMap } from "../components/CustomMap";
-import Button from "../components/ui/Button";
 import { equipmentIcons } from "../constants/images";
+import useFetch from "../hooks/useFetch";
+import { ITelematicData } from "../interfaces/ITelematicData";
 import TelematicDataContext from "../store/telematicDataContext";
 
 function Dashboard() {
   const { addObject } = useContext(TelematicDataContext);
+  const { data, error, status } = useFetch("http://fakeurl");
+
+  useEffect(() => {
+    if (status === "fetched" && data) {
+      (data as Array<ITelematicData>).forEach((datum) => {
+        addObject({
+          ...datum,
+          EquipmentHeader: {
+            ...datum.EquipmentHeader,
+            pic: equipmentIcons[Math.floor(Math.random() * 9)],
+          },
+        });
+      });
+    }
+  }, [status]);
 
   return (
     <section>
+      {status}
       <h2 className="title">Dashboard</h2>
-      <Button
-        onClick={() => {
-          addObject({
-            ...mocked_telematicData[0],
-            EquipmentHeader: {
-              ...mocked_telematicData[0].EquipmentHeader,
-              pic: equipmentIcons[Math.floor(Math.random() * 5)],
-            },
-          });
-        }}
-      >
-        Add marker
-      </Button>
       <CustomList />
       <CustomMap
         zoomLevel={7}

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useWindowSize } from "usehooks-ts";
@@ -17,7 +16,6 @@ export const Sidebar = () => {
   const location = useLocation();
   const sidebarCtx = useContext(SidebarContext);
   const loginCtx = useContext(LoginContext);
-  const { t } = useTranslation();
 
   function openSidebarHandler() {
     //for width>768(tablet size) if sidebar was open in width<768 was opened too.
@@ -62,7 +60,7 @@ export const Sidebar = () => {
               <Icon icon={nav.icon} />
             </div>
             <div className={classes.sidebar__menu__item__txt}>
-              {t(nav.section)}
+              {nav.section}
             </div>
           </Link>
         ))}
@@ -77,7 +75,7 @@ export const Sidebar = () => {
           <div className={classes.sidebar__menu__item__icon}>
             <Icon icon="tabler:logout" />
           </div>
-          <div className={classes.sidebar__menu__item__txt}>{t("logout")}</div>
+          <div className={classes.sidebar__menu__item__txt}>{"logout"}</div>
         </Link>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import React, { useContext, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
 import Button from "../components/ui/Button";
@@ -16,7 +15,6 @@ function LoginBox() {
   const userNameRef = useRef<HTMLInputElement>(null);
   const errorMessageRef = useRef<HTMLSpanElement>(null);
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   let isValid = true;
   function loginHandler(e: React.FormEvent) {
@@ -43,7 +41,7 @@ function LoginBox() {
         <div className={classes.logo}>
           <img src={images.logo} alt="digikala" />
         </div>
-        <h2 className={classes.title}>{t("loginPage")}</h2>
+        <h2 className={classes.title}>{"loginPage"}</h2>
         <form onSubmit={loginHandler}>
           <Input
             ref={userNameRef}
@@ -52,7 +50,7 @@ function LoginBox() {
             placeholder={"admin"}
           />
           <span ref={errorMessageRef} className={classes.errorMessage}>
-            {t("errorMessage")}
+            {"errorMessage"}
           </span>
           <Input
             type={"password"}
@@ -60,13 +58,13 @@ function LoginBox() {
             value={"admin"}
             readonly={true}
           />
-          <Button type="submit">{t("login")}</Button>
+          <Button type="submit">{"login"}</Button>
           <Link className={classes.forgat_pass} to="/">
-            {t("forgetPass")}
+            {"forgetPass"}
           </Link>
           <div className={classes.checkbox}>
             <input type="checkbox" id="rememberMe" />
-            <label htmlFor="rememberMe">{t("rememberMe")}</label>
+            <label htmlFor="rememberMe">{"rememberMe"}</label>
           </div>
         </form>
       </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
 import classes from "./Dropdown.module.scss";
 
@@ -15,11 +14,9 @@ interface IDropdown {
 const Dropdown: React.FC<IDropdown> = (props) => {
   //   const selectRef = useRef<HTMLSelectElement | null>(null);
 
-  const { t } = useTranslation();
-
   return (
     <div className={` subTitle ${classes.form__control}`}>
-      <label htmlFor="category">{t("category")}</label>
+      <label htmlFor="category">{"category"}</label>
       <select
         name="category"
         className={classes.select}
@@ -28,7 +25,7 @@ const Dropdown: React.FC<IDropdown> = (props) => {
       >
         {props.dropdownData.map((item, index) => (
           <option key={`${item.label + index}`} value={item.value}>
-            {t(`${item.label}`)}
+            {`${item.label}`}
           </option>
         ))}
       </select>

@@ -1,19 +1,15 @@
-import React, { useContext } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import Button from "../components/ui/Button";
 
 function NotFound() {
-  const { t } = useTranslation();
-
   return (
     <div className={"notFound__container"}>
       <h2 className={"notFound__title notFound__title_ltr"}>
-        {t("notFoundMsg")}
+        {"page not found"}
       </h2>
       <Link to="/">
-        <Button>{t("backToHome")}</Button>
+        <Button>{"back"}</Button>
       </Link>
       <div className="notFound__img">
         <img

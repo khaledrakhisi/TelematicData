@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { mocked_telematicData } from "../apis/data";
 // import CustomTable from "../components/CustomTable";
@@ -19,7 +18,6 @@ const dropdownOptions = [
   { label: "beauty", value: "beauty" },
 ];
 export const Machines = () => {
-  const { t } = useTranslation();
   const [selected, setSelected] = useState(dropdownOptions[0].value);
   const { data, error, status } = useFetch<ITelematicData[]>(url);
   let productsTable;
@@ -68,7 +66,7 @@ export const Machines = () => {
 
   return (
     <section>
-      <h2 className="title">{t("products")}</h2>
+      <h2 className="title">{"products"}</h2>
       {/* <Dropdown
         dropdownData={dropdownOptions}
         onChange={selectedChangeHandler}

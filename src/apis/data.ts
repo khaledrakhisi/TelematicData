@@ -1,6 +1,6 @@
 import { ITelematicData } from "../interfaces/ITelematicData";
 
-export const mocked_telematicData: Array<ITelematicData> = [
+export const mocked_telematicData = [
   {
     EquipmentHeader: {
       id: 1000,
@@ -41,12 +41,12 @@ export const mocked_telematicData: Array<ITelematicData> = [
       id: 1100,
       OEMName: "Kubota",
       Model: "U27-4",
-      SerialNumber: "ABC123456",
+      SerialNumber: "XYZ123456",
       SnapshotTime: new Date("2022-04-12T07:00:00Z"),
     },
     Location: {
-      Latitude: 100.52,
-      Longitude: 1234.405,
+      Latitude: 10.52,
+      Longitude: 12.405,
       Altitude: 70,
       AltitudeUnits: "metre",
     },
