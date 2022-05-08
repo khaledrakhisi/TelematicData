@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { LoginContextProvider } from "./store/loginContext";
-import { MapContextProvider } from "./store/mapContext";
 import { SidebarContextProvider } from "./store/sidebarContext";
+import { TelematicDataContextProvider } from "./store/telematicDataContext";
 import { ThemeContextProvider } from "./store/themeContext";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -16,9 +16,9 @@ root.render(
     <LoginContextProvider>
       <ThemeContextProvider>
         <SidebarContextProvider>
-          <MapContextProvider>
+          <TelematicDataContextProvider>
             <App />
-          </MapContextProvider>
+          </TelematicDataContextProvider>
         </SidebarContextProvider>
       </ThemeContextProvider>
     </LoginContextProvider>

@@ -1,25 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
+import { mocked_telematicData } from "../apis/data";
 import { CustomMap } from "../components/CustomMap";
 import Button from "../components/ui/Button";
-import MapContext, { MapContextProvider } from "../store/mapContext";
+import TelematicDataContext from "../store/telematicDataContext";
 
 function Dashboard() {
-  const { addMarker } = useContext(MapContext);
+  const { addObject } = useContext(TelematicDataContext);
 
   return (
     <section>
       <h2 className="title">Dashboard</h2>
       <Button
         onClick={() => {
-          addMarker({
-            Location: {
-              Latitude: 17.56,
-              Longitude: -20.35,
-              Altitude: 70,
-              AltitudeUnits: "meter",
-            },
-          });
+          addObject(mocked_telematicData[0]);
         }}
       >
         Add marker
