@@ -8,7 +8,6 @@ export const mocked_telematicData: Array<ITelematicData> = [
       Model: "M315F",
       SerialNumber: "ABC123456",
       SnapshotTime: new Date("2021-06-26T10:00:00Z"),
-      pic: "",
     },
     Location: {
       Latitude: 52.52,
@@ -44,7 +43,6 @@ export const mocked_telematicData: Array<ITelematicData> = [
       Model: "U27-4",
       SerialNumber: "ABC123456",
       SnapshotTime: new Date("2022-04-12T07:00:00Z"),
-      pic: "https://res.cloudinary.com/flexcavo/image/upload/c_limit,h_384,w_640/mm5v7tcle89obzf5e3iv",
     },
     Location: {
       Latitude: 100.52,

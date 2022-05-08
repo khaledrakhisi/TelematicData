@@ -4,5 +4,5 @@ export interface IMachine {
   Model: string;
   SerialNumber: string;
   SnapshotTime: Date;
-  pic: string;
+  pic?: any;
 }

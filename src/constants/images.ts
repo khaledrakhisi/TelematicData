@@ -4,5 +4,12 @@ export const images = {
   logKey: require("../assets/images/Reset password-pana.svg"),
   dashboard: require("../assets/images/Revenue-cuate.svg"),
   notFound: require("../assets/images/Oops 404 Error with a broken robot-cuate.svg"),
-  markerIcon: require("../assets/images/marker.svg"),
 };
+
+export const equipmentIcons = [
+  require("../assets/images/equipment1.svg").default,
+  require("../assets/images/equipment2.svg").default,
+  require("../assets/images/equipment3.svg").default,
+  require("../assets/images/equipment4.svg").default,
+  require("../assets/images/equipment5.svg").default,
+];
