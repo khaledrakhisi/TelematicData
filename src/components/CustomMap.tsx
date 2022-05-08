@@ -14,7 +14,7 @@ import classes from "./CustomMap.module.scss";
 
 const MAP_STYLE = { width: "100%", height: "100%" };
 const MAP_CONFIG = {
-  maxZoom: 3.5,
+  maxZoom: 10,
   mapStyle: "mapbox://styles/khaledr/cl2wa8agc00al15omwujaierw",
   mapboxAccessToken:
     "pk.eyJ1Ijoia2hhbGVkciIsImEiOiJja3BzN2t1OHMwZHQxMm5vY25tY3Q3NHI5In0.akzVvXBLn643NdB94sZaGg",
@@ -58,10 +58,9 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
     longitude: 48.6886386,
     zoom: 3.5,
   });
-  const { objects } = useContext(TelematicDataContext);
-  const [selectedObject, setSelectedObject] = useState<ITelematicData | null>(
-    null
-  );
+  const { objects, selectObject, selectedObject } =
+    useContext(TelematicDataContext);
+
   const mapContainerRef = React.useRef(null);
   const mapRef = React.useRef(null);
 
@@ -93,11 +92,23 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
     }
   }, [objects]);
 
+  useEffect(() => {
+    if (selectedObject) {
+      setViewport({
+        ...viewport,
+        latitude: selectedObject.Location.Latitude,
+        longitude: selectedObject.Location.Longitude,
+      });
+    }
+  }, [selectedObject]);
+
   return (
     <section className={classes.container} ref={mapContainerRef}>
-      {/* <div className={classes.statusBar}>
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div> */}
+      <div className={classes.statusBar}>
+        Longitude: {viewport.longitude.toFixed(3)} | Latitude:{" "}
+        {viewport.latitude.toFixed(3)} | Zoom:
+        {viewport.zoom.toFixed(2)}
+      </div>
       <ReactMapGL
         ref={mapRef}
         {...MAP_STYLE}
@@ -117,7 +128,7 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
               className={classes.markerBtn}
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedObject(obj);
+                selectObject(obj);
               }}
             >
               {/* <img src={images.markerIcon} alt="Machine Icon" /> */}
@@ -133,7 +144,7 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
             longitude={selectedObject.Location.Longitude}
             anchor="bottom-left"
             onClose={() => {
-              setSelectedObject(null);
+              selectObject(null);
             }}
           >
             <div>

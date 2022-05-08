@@ -1,5 +1,3 @@
-import { ITelematicData } from "../interfaces/ITelematicData";
-
 export const mocked_telematicData = [
   {
     EquipmentHeader: {

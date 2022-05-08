@@ -8,26 +8,25 @@ import { ITelematicData } from "../interfaces/ITelematicData";
 import TelematicDataContext from "../store/telematicDataContext";
 
 function Dashboard() {
-  const { addObject } = useContext(TelematicDataContext);
-  const { data, error, status } = useFetch("http://fakeurl");
+  const { setTelematicData } = useContext(TelematicDataContext);
+  const { data, error, status } = useFetch("http://fakeurl.com");
 
   useEffect(() => {
     if (status === "fetched" && data) {
-      (data as Array<ITelematicData>).forEach((datum) => {
-        addObject({
+      setTelematicData(
+        (data as ITelematicData[]).map((datum) => ({
           ...datum,
           EquipmentHeader: {
             ...datum.EquipmentHeader,
-            pic: equipmentIcons[Math.floor(Math.random() * 9)],
+            pic: equipmentIcons[Math.floor(Math.random() * 10)],
           },
-        });
-      });
+        }))
+      );
     }
   }, [status]);
 
   return (
     <section>
-      {status}
       <h2 className="title">Dashboard</h2>
       <CustomList />
       <CustomMap

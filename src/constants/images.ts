@@ -12,4 +12,9 @@ export const equipmentIcons = [
   require("../assets/images/equipment3.svg").default,
   require("../assets/images/equipment4.svg").default,
   require("../assets/images/equipment5.svg").default,
+  require("../assets/images/equipment6.svg").default,
+  require("../assets/images/equipment7.svg").default,
+  require("../assets/images/equipment8.svg").default,
+  require("../assets/images/equipment9.svg").default,
+  require("../assets/images/equipment10.svg").default,
 ];

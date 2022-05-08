@@ -12,6 +12,7 @@
   &__content {
     min-height: 100vh;
     padding: 1rem 2.5rem 1rem 17rem;
+    // padding: $mediumSpacing;
     transition: all 0.5s ease-in-out;
     @include tablet {
       padding: 1rem;
