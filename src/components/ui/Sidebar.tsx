@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useWindowSize } from "usehooks-ts";
 
+import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+import { ReactComponent as MiniLogo } from "../../assets/images/mini-logo.svg";
 import { sidebarNav } from "../../config/sidebarNav";
 import { images } from "../../constants/images";
 import LoginContext from "../../store/loginContext";
@@ -44,7 +46,18 @@ export const Sidebar = () => {
       }`}
     >
       <div className={classes.sidebar__logo}>
-        <img src={images.logo} alt="digikala" />
+        {/* <img src={images.logo} alt="flexcavo" />
+        <img src={images.miniLogo} alt="flexcavo" /> */}
+        <Logo
+          className={`${classes.logosvg} ${
+            !sidebarCtx.isOpen && classes.sidebar_close
+          }`}
+        />
+        {/* <MiniLogo
+          className={`${classes.minilogosvg} ${
+            !sidebarCtx.isOpen && classes.sidebar_close
+          }`}
+        /> */}
       </div>
       <div className={classes.sidebar__menu}>
         {sidebarNav.map((nav, index) => (

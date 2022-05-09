@@ -10,7 +10,7 @@ import { Machines } from "./pages/Machines";
 import "./scss/App.scss";
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
-// const Customers = React.lazy(() => import("./pages/Customers"));
+const Settings = React.lazy(() => import("./pages/Settings"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 // const BlankPage = React.lazy(() => import("./pages/BlankPage"));
 // const Login = React.lazy(() => import("./pages/Login"));
@@ -23,8 +23,9 @@ function App() {
           <Route element={<AuthLayout />}>
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
-              <Route path="/products" element={<Machines />} />
-              {/* <Route path="/products/:productId" element={<ProductEdit />} /> */}
+              <Route path="/equipments" element={<Machines />} />
+              {/* <Route path="/equipments/:equipmentId" element={<Machine />} /> */}
+              <Route path="/settings" element={<Machines />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

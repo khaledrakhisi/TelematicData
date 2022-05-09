@@ -45,8 +45,15 @@
   }
 }
 
-@mixin animate($animation, $duration: 400ms, $method: ease, $times: 1) {
+@mixin animate(
+  $animation,
+  $duration: 400ms,
+  $method: ease,
+  $times: 1,
+  $delay: 0
+) {
   animation: $animation $duration $method $times;
+  animation-delay: $delay;
 }
 
 @mixin keyframes($name) {

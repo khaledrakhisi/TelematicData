@@ -71,7 +71,7 @@ export const mocked_telematicData = [
   },
   {
     EquipmentHeader: {
-      id: 1100,
+      id: 1200,
       OEMName: "Wacker Neuson",
       Model: "WL32",
       SerialNumber: "MBC123456",
