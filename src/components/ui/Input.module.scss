@@ -3,14 +3,26 @@
 .form__control {
   position: relative;
   margin-bottom: 2rem;
-  // border: 1px solid red;
+
   label {
     position: absolute;
     top: -30%;
     left: 10px;
-    background-color: var(--bgc);
+    // background-color: var(--bgc);
     padding: 0.3rem;
     white-space: nowrap;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: var(--bgc);
+      width: 100px;
+      height: 5px;
+      top: 15px;
+      left: 0;
+      z-index: -1;
+    }
   }
 
   input {
@@ -20,6 +32,7 @@
     background-color: var(--bgc);
     border-radius: $smallBorderRadius;
     min-width: 300px;
+    width: 100%;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.05);
     @media screen and (max-width: 300px) {
       min-width: auto;

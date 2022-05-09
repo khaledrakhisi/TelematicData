@@ -13,6 +13,7 @@ interface Props {
   ref?: HTMLInputElement;
   readonly?: boolean;
   autocomplete?: string;
+  label?: string;
 }
 
 interface IImperativeHandler {
@@ -42,7 +43,7 @@ const Input = React.forwardRef<IImperativeHandler, Props>((props, ref) => {
 
   return (
     <div className={`${classes.form__control} ${props.classes}`}>
-      <label htmlFor={props.id}>{`${props.id}`}</label>
+      <label htmlFor={props.id}>{`${props.label || props.id}`}</label>
       <input
         ref={inputRef}
         id={props.id}

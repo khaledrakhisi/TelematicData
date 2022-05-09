@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 
 import { EWeekDays } from "../interfaces/EWeekDays";
 import { ITelematicData } from "../interfaces/ITelematicData";
@@ -12,6 +13,7 @@ type TTelematicDataContext = {
   selectObject: (mappableObject: ITelematicData | null) => void;
   selectedObject: ITelematicData | null;
   settings: ITelematicSettings | null;
+  setSettings: (newSettings: ITelematicSettings) => void;
 };
 
 const TelematicDataContext = React.createContext<TTelematicDataContext>({
@@ -22,6 +24,7 @@ const TelematicDataContext = React.createContext<TTelematicDataContext>({
   selectObject: () => {},
   markerColor: "#000",
   settings: null,
+  setSettings: () => {},
 });
 
 interface IMapContextProviderProps {
@@ -36,11 +39,15 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     null
   );
   const [markerColor, setMarkerColor] = useState<string>("#000");
-  const [settings, setSettings] = useState<ITelematicSettings>({
-    fuelThreshold: 10,
-    operatedOutOfHours: [EWeekDays.saturday, EWeekDays.sunday],
-    distanceThreshold: 5, //Kilometer
-  });
+  const [settings, setSettings] = useLocalStorage<ITelematicSettings>(
+    "settings",
+    {
+      fuelThreshold: 10,
+      operatedOutOfHours: [EWeekDays.saturday, EWeekDays.sunday],
+      distanceThreshold: 5, //Kilometer
+      underutilization: 3,
+    }
+  );
 
   function addObject(mappableObject: ITelematicData) {
     setObjects((prev) => [...prev, mappableObject]);
@@ -62,6 +69,7 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     selectedObject,
     markerColor,
     settings,
+    setSettings,
   };
   return (
     <TelematicDataContext.Provider value={telematicDataValue}>

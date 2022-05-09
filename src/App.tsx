@@ -5,14 +5,14 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Login";
-import { Machines } from "./pages/Machines";
+import Machines from "./pages/Machines";
 
 import "./scss/App.scss";
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const Settings = React.lazy(() => import("./pages/Settings"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
-// const BlankPage = React.lazy(() => import("./pages/BlankPage"));
+const Equipments = React.lazy(() => import("./pages/Machines"));
 // const Login = React.lazy(() => import("./pages/Login"));
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path="/equipments" element={<Machines />} />
               {/* <Route path="/equipments/:equipmentId" element={<Machine />} /> */}
-              <Route path="/settings" element={<Machines />} />
+              <Route path="/settings" element={<Settings />} />
             </Route>
           </Route>
           <Route path="/login" element={<Login />} />

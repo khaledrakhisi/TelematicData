@@ -1,11 +1,12 @@
 import { useEffect, useReducer } from "react";
 
-import { fetchAllData } from "../apis/api";
+import { fake_fetch } from "../apis/api";
 
 interface State<T> {
   data?: T;
   error?: Error;
   status?: string;
+  sendRequest: () => void;
 }
 
 // discriminated union type
@@ -14,11 +15,12 @@ type Action<T> =
   | { type: "fetched"; payload: T }
   | { type: "error"; payload: Error };
 
-function useFetch<T = unknown>(url?: string): State<T> {
+function useFetch<T = unknown>(url: string, method = "GET"): State<T> {
   const initialState: State<T> = {
     error: undefined,
     data: undefined,
     status: "",
+    sendRequest: () => {},
   };
 
   // Keep state logic separated
@@ -35,41 +37,41 @@ function useFetch<T = unknown>(url?: string): State<T> {
     }
   };
 
-  const [state, dispatch] = useReducer(fetchReducer, initialState);
-  useEffect(() => {
-    // Do nothing if the url is not given
-    if (!url) {
-      return;
+  const fetchData = async () => {
+    dispatch({ type: "loading" });
+
+    try {
+      // const response = await fetch(url, options);
+      const response = await fake_fetch(url, method);
+
+      // if (!response.ok) {
+      //   throw new Error(response.statusText);
+      // }
+      // if (response.ok && response.status !== 200) {
+      //   // console.log(response.status);
+      //   throw new Error("302 error happen. Maybe you forgat .json");
+      // }
+
+      // const data = (await response.json()) as T;
+      const data = response;
+
+      dispatch({ type: "fetched", payload: data as any });
+    } catch (error) {
+      dispatch({ type: "error", payload: error as Error });
     }
+  };
 
-    const fetchData = async () => {
-      dispatch({ type: "loading" });
+  const [state, dispatch] = useReducer(fetchReducer, initialState);
+  // useEffect(() => {
+  //   // Do nothing if the url is not given
+  //   if (!url) {
+  //     return;
+  //   }
 
-      try {
-        // const response = await fetch(url, options);
-        const response = await fetchAllData();
+  //   // void fetchData();
+  // }, [url]);
 
-        // if (!response.ok) {
-        //   throw new Error(response.statusText);
-        // }
-        // if (response.ok && response.status !== 200) {
-        //   // console.log(response.status);
-        //   throw new Error("302 error happen. Maybe you forgat .json");
-        // }
-
-        // const data = (await response.json()) as T;
-        const data = response;
-
-        dispatch({ type: "fetched", payload: data as any });
-      } catch (error) {
-        dispatch({ type: "error", payload: error as Error });
-      }
-    };
-
-    void fetchData();
-  }, [url]);
-
-  return state;
+  return { ...state, sendRequest: fetchData };
 }
 
 export default useFetch;

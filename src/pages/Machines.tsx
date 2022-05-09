@@ -17,7 +17,7 @@ const dropdownOptions = [
   { label: "clothing", value: "clothing" },
   { label: "beauty", value: "beauty" },
 ];
-export const Machines = () => {
+const Machines = () => {
   const [selected, setSelected] = useState(dropdownOptions[0].value);
   const { data, error, status } = useFetch<ITelematicData[]>(url);
   let productsTable;
@@ -75,3 +75,5 @@ export const Machines = () => {
     </section>
   );
 };
+
+export default Machines;

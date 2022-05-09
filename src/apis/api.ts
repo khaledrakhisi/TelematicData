@@ -8,7 +8,10 @@ import { mocked_telematicData } from "./data";
 
 const FAKE_API_DELAY: number = 2e3;
 
-export const fetchAllData = async (): Promise<Array<ITelematicData>> => {
+export const fake_fetch = async (
+  url: string,
+  method: string
+): Promise<Array<ITelematicData>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mocked_telematicData);
