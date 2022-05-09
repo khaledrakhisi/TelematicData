@@ -1,14 +1,20 @@
 export const sidebarNav = [
   {
     link: "/",
-    section: "dashboard",
+    section: "Dashboard",
     icon: "lucide:layout-dashboard", //width:"20"
     text: "Dashboard",
   },
   {
-    link: "/machines",
-    section: "machines",
+    link: "/equipments",
+    section: "Equipments",
     icon: "icon-park-outline:ad-product",
-    text: "Machines",
+    text: "Equipments",
+  },
+  {
+    link: "/settings",
+    section: "Settings",
+    icon: "icon-park-outline:ad-product",
+    text: "Settings",
   },
 ];

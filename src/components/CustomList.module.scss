@@ -32,6 +32,10 @@
           transition: all ease 300ms;
         }
       }
+      & > p {
+        width: 100px;
+        @include overflowEllipses();
+      }
     }
   }
 }

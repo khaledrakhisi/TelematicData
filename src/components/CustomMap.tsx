@@ -1,12 +1,17 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useSize } from "react-hook-size";
-import ReactMapGL, { Marker, NavigationControl, Popup } from "react-map-gl";
-import { maxBy, minBy } from "lodash";
-import WebMercatorViewport from "viewport-mercator-project";
+import React, { useContext, useEffect, useRef, useState } from "react";
+// import { useSize } from "react-hook-size";
+import ReactMapGL, {
+  // MapRef,
+  Marker,
+  // NavigationControl,
+  Popup,
+} from "react-map-gl";
 
+// import { maxBy, minBy } from "lodash";
+// import WebMercatorViewport from "viewport-mercator-project";
 import { ReactComponent as MarkerIcon } from "../assets/images/marker.svg";
 import { IMappable } from "../interfaces/IMappable";
-import { ITelematicData } from "../interfaces/ITelematicData";
+// import { ITelematicData } from "../interfaces/ITelematicData";
 import TelematicDataContext from "../store/telematicDataContext";
 
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -20,51 +25,53 @@ const MAP_CONFIG = {
     "pk.eyJ1Ijoia2hhbGVkciIsImEiOiJja3BzN2t1OHMwZHQxMm5vY25tY3Q3NHI5In0.akzVvXBLn643NdB94sZaGg",
 };
 
-const getMinOrMax = (
-  markers: ITelematicData[],
-  minOrMax: "max" | "min",
-  latOrLng: "Latitude" | "Longitude"
-) => {
-  if (minOrMax === "max") {
-    return (maxBy(markers, (value) => value.Location[latOrLng]) as any)[
-      latOrLng
-    ];
-  }
-  return (minBy(markers, (value) => value.Location[latOrLng]) as any)[latOrLng];
-};
+// const getMinOrMax = (
+//   markers: ITelematicData[],
+//   minOrMax: "max" | "min",
+//   latOrLng: "Latitude" | "Longitude"
+// ) => {
+//   if (minOrMax === "max") {
+//     return (maxBy(markers, (value) => value.Location[latOrLng]) as any)[
+//       latOrLng
+//     ];
+//   }
+//   return (minBy(markers, (value) => value.Location[latOrLng]) as any)[latOrLng];
+// };
 
-const getBounds = (markers: ITelematicData[]) => {
-  const maxLat = getMinOrMax(markers, "max", "Latitude");
-  const minLat = getMinOrMax(markers, "min", "Latitude");
-  const maxLng = getMinOrMax(markers, "max", "Longitude");
-  const minLng = getMinOrMax(markers, "min", "Longitude");
+// const getBounds = (markers: ITelematicData[]) => {
+//   const maxLat = getMinOrMax(markers, "max", "Latitude");
+//   const minLat = getMinOrMax(markers, "min", "Latitude");
+//   const maxLng = getMinOrMax(markers, "max", "Longitude");
+//   const minLng = getMinOrMax(markers, "min", "Longitude");
 
-  const southWest = [minLng, minLat];
-  const northEast = [maxLng, maxLat];
-  return [southWest, northEast];
-};
+//   const southWest = [minLng, minLat];
+//   const northEast = [maxLng, maxLat];
+//   return [southWest, northEast];
+// };
 
 interface ICustomMapProps {
   defaultPosition: IMappable;
   zoomLevel: number;
+  showStatusPanel: boolean;
 }
 
 export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
   defaultPosition,
   zoomLevel,
+  showStatusPanel,
 }) => {
   const [viewport, setViewport] = useState({
     latitude: 30.6506679,
     longitude: 48.6886386,
-    zoom: 3.5,
+    zoom: 6,
   });
   const { objects, selectObject, selectedObject } =
     useContext(TelematicDataContext);
 
   const mapContainerRef = React.useRef(null);
-  const mapRef = React.useRef(null);
+  const mapRef = useRef<any>();
 
-  const { width, height } = useSize(mapContainerRef);
+  // const { width, height } = useSize(mapContainerRef);
 
   // useEffect(() => {
   //   if (width && height && objects && objects.length > 0) {
@@ -84,31 +91,40 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
 
   useEffect(() => {
     if (objects && objects.length) {
-      setViewport({
-        ...viewport,
+      setViewport((prev) => ({
+        ...prev,
         latitude: objects[objects.length - 1].Location.Latitude,
         longitude: objects[objects.length - 1].Location.Longitude,
-      });
+      }));
     }
   }, [objects]);
 
   useEffect(() => {
     if (selectedObject) {
-      setViewport({
-        ...viewport,
-        latitude: selectedObject.Location.Latitude,
-        longitude: selectedObject.Location.Longitude,
+      mapRef.current?.flyTo({
+        center: [
+          selectedObject.Location.Longitude,
+          selectedObject.Location.Latitude,
+        ],
+        duration: 2000,
       });
+      // setViewport({
+      //   ...viewport,
+      //   latitude: selectedObject.Location.Latitude,
+      //   longitude: selectedObject.Location.Longitude,
+      // });
     }
   }, [selectedObject]);
 
   return (
     <section className={classes.container} ref={mapContainerRef}>
-      <div className={classes.statusBar}>
-        Longitude: {viewport.longitude.toFixed(3)} | Latitude:{" "}
-        {viewport.latitude.toFixed(3)} | Zoom:
-        {viewport.zoom.toFixed(2)}
-      </div>
+      {showStatusPanel && (
+        <div className={classes.statusBar}>
+          <p>Longitude: {viewport.longitude.toFixed(3)}</p>
+          <p>Latitude: {viewport.latitude.toFixed(3)}</p>
+          <p>Zoom: {viewport.zoom.toFixed(2)}</p>
+        </div>
+      )}
       <ReactMapGL
         ref={mapRef}
         {...MAP_STYLE}

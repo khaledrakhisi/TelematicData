@@ -12,6 +12,8 @@
   }
 
   .statusBar {
+    @include flex(flex-start);
+    flex-direction: column;
     background-color: var(--sidebar);
     color: #fff;
     padding: $smallSpacing $mediumSpacing;

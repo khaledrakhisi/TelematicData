@@ -37,8 +37,9 @@
     padding: 0 12px 2rem;
 
     img {
-      --size: 7.5rem;
-      width: var(--size);
+      // --size: 7.5rem;
+      width: 80%;
+      margin: $largeSpacing auto;
       // height: var(--size);
     }
 
@@ -89,8 +90,8 @@
         margin-right: 1rem;
 
         svg {
-          width: $smallIconSize;
-          height: $smallIconSize;
+          width: $mediumIconSize;
+          height: $mediumIconSize;
         }
       }
       &__txt {
@@ -102,43 +103,4 @@
 
 .logout {
   align-self: flex-end;
-}
-
-html[dir="rtl"] {
-  .sidebar {
-    &__menu {
-      &__item {
-        padding-left: 0;
-        // padding-right: 16px;
-        // font-weight: 500;
-        font-size: 18px;
-        // margin-bottom: 1.5rem;
-        &.active {
-          padding-right: 4px;
-          font-weight: 700;
-          &::before {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-            right: 0;
-          }
-        }
-
-        &__icon {
-          margin-left: 1rem;
-        }
-      }
-    }
-    &.sidebar_close .sidebar__logo {
-      direction: ltr;
-      width: 46px;
-      margin-right: 10px;
-      overflow: hidden;
-      @include tablet {
-        direction: rtl;
-        width: auto;
-      }
-    }
-  }
 }

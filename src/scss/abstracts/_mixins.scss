@@ -14,7 +14,7 @@
 
 @mixin overflowEllipses($maxLines: 3) {
   overflow: hidden;
-  // display: -webkit-box;
+  display: -webkit-box;
   -webkit-line-clamp: $maxLines;
   -webkit-box-orient: vertical;
 }

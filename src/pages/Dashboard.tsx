@@ -30,6 +30,7 @@ function Dashboard() {
       <h2 className="title">Dashboard</h2>
       <CustomList />
       <CustomMap
+        showStatusPanel
         zoomLevel={7}
         defaultPosition={{
           Location: {

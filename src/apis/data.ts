@@ -43,8 +43,43 @@ export const mocked_telematicData = [
       SnapshotTime: new Date("2022-04-12T07:00:00Z"),
     },
     Location: {
-      Latitude: 10.52,
-      Longitude: 12.405,
+      Latitude: 44.405,
+      Longitude: 22.52,
+      Altitude: 70,
+      AltitudeUnits: "metre",
+    },
+    CumulativeIdleHours: {
+      Hour: 1060,
+    },
+    CumulativeOperatingHours: {
+      Hour: 3469.4,
+    },
+    Distance: {
+      OdometerUnits: "kilometre",
+      Odometer: 2702.4,
+    },
+    EngineStatus: {
+      Running: false,
+    },
+    FuelUsed: {
+      FuelUnits: "litre",
+      FuelConsumed: 24096,
+    },
+    FuelRemaining: {
+      Percent: 39,
+    },
+  },
+  {
+    EquipmentHeader: {
+      id: 1100,
+      OEMName: "Wacker Neuson",
+      Model: "WL32",
+      SerialNumber: "MBC123456",
+      SnapshotTime: new Date("2022-04-12T07:00:00Z"),
+    },
+    Location: {
+      Latitude: 56.52,
+      Longitude: 10.405,
       Altitude: 70,
       AltitudeUnits: "metre",
     },
