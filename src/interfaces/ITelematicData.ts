@@ -1,8 +1,8 @@
-import { IMachine } from "./IMachine";
+import { IEquipment } from "./IEquipment";
 import { IMappable } from "./IMappable";
 
 export interface ITelematicData extends IMappable {
-  EquipmentHeader: IMachine;
+  EquipmentHeader: IEquipment;
   // Location: IMappable;
   CumulativeIdleHours: {
     Hour: number;

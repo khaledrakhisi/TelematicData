@@ -1,3 +1,22 @@
+import { equipmentIcons } from "../constants/images";
+
+export const mocked_equipments = [
+  {
+    OEMName: "CAT",
+    Model: "M315F",
+    pic: equipmentIcons[0],
+    telematicData: null,
+    SerialNumber: "ABC123456",
+  },
+  {
+    OEMName: "Kubota",
+    Model: "U27-4",
+    pic: equipmentIcons[1],
+    telematicData: null,
+    SerialNumber: "XYZ123456",
+  },
+];
+
 export const mocked_telematicData = [
   {
     EquipmentHeader: {

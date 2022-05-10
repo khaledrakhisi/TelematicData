@@ -1,0 +1,24 @@
+@use "../scss/abstracts/" as *;
+
+.equipment_listitem {
+  @include flex();
+  flex-direction: column;
+  margin: 0 $mediumSpacing;
+  cursor: pointer;
+  & > img {
+    border: 1px solid var(--secondaryColor);
+    padding: $smallSpacing;
+    width: $extraLargeIconSize;
+    height: $extraLargeIconSize;
+    border-radius: 100%;
+
+    &:hover {
+      background-color: var(--secondaryColor);
+      transition: all ease 300ms;
+    }
+  }
+  & > p {
+    width: 100px;
+    @include overflowEllipses();
+  }
+}

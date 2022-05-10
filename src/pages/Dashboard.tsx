@@ -8,37 +8,30 @@ import { ITelematicData } from "../interfaces/ITelematicData";
 import TelematicDataContext from "../store/telematicDataContext";
 
 function Dashboard() {
-  const { setTelematicData } = useContext(TelematicDataContext);
-  const { data, error, status, sendRequest } = useFetch("http://fakeurl.com");
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("fetching");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("fetching");
+  //     sendRequest();
+  //   }, 5e3);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
-      sendRequest();
-    }, 5e3);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    // } else if (!isActive && seconds !== 0) {
-    // clearInterval(interval);
-    // }
-
-    if (status === "fetched" && data) {
-      setTelematicData(
-        (data as ITelematicData[]).map((datum) => ({
-          ...datum,
-          EquipmentHeader: {
-            ...datum.EquipmentHeader,
-            pic: equipmentIcons[Math.floor(Math.random() * 10)],
-          },
-        }))
-      );
-    }
-  }, [status]);
+  // useEffect(() => {
+  //   if (status === "fetched" && data) {
+  //     setTelematicData(
+  //       (data as ITelematicData[]).map((datum) => ({
+  //         ...datum,
+  //         EquipmentHeader: {
+  //           ...datum.EquipmentHeader,
+  //           pic: equipmentIcons[Math.floor(Math.random() * 10)],
+  //         },
+  //       }))
+  //     );
+  //   }
+  // }, [status]);
 
   return (
     <section>

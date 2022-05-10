@@ -65,7 +65,7 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
     longitude: 48.6886386,
     zoom: 6,
   });
-  const { objects, selectObject, selectedObject } =
+  const { equipments, setSelectEquipment, selectedEquipment } =
     useContext(TelematicDataContext);
 
   const mapContainerRef = React.useRef(null);
@@ -90,21 +90,27 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
   // }, [width, height, objects]);
 
   useEffect(() => {
-    if (objects && objects.length) {
+    if (
+      equipments &&
+      equipments.length &&
+      equipments[equipments.length - 1].telematicData
+    ) {
       setViewport((prev) => ({
         ...prev,
-        latitude: objects[objects.length - 1].Location.Latitude,
-        longitude: objects[objects.length - 1].Location.Longitude,
+        latitude:
+          equipments[equipments.length - 1].telematicData!.Location.Latitude,
+        longitude:
+          equipments[equipments.length - 1].telematicData!.Location.Longitude,
       }));
     }
-  }, [objects]);
+  }, [equipments]);
 
   useEffect(() => {
-    if (selectedObject) {
+    if (selectedEquipment && selectedEquipment.telematicData) {
       mapRef.current?.flyTo({
         center: [
-          selectedObject.Location.Longitude,
-          selectedObject.Location.Latitude,
+          selectedEquipment.telematicData.Location.Longitude,
+          selectedEquipment.telematicData.Location.Latitude,
         ],
         duration: 2000,
       });
@@ -114,7 +120,7 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
       //   longitude: selectedObject.Location.Longitude,
       // });
     }
-  }, [selectedObject]);
+  }, [selectedEquipment]);
 
   return (
     <section className={classes.container} ref={mapContainerRef}>
@@ -134,47 +140,58 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
           setViewport(e.viewState);
         }}
       >
-        {objects.map((obj) => (
-          <Marker
-            key={obj.EquipmentHeader.id}
-            latitude={obj.Location.Latitude}
-            longitude={obj.Location.Longitude}
-          >
-            <button
-              className={classes.markerBtn}
-              onClick={(e) => {
-                e.stopPropagation();
-                selectObject(obj);
-              }}
-            >
-              {/* <img src={images.markerIcon} alt="Machine Icon" /> */}
-              <MarkerIcon />
-            </button>
-          </Marker>
-        ))}
+        {equipments.map((equ) => {
+          if (equ.telematicData)
+            return (
+              equ.telematicData && (
+                <Marker
+                  key={equ.telematicData.EquipmentHeader.SerialNumber}
+                  latitude={equ.telematicData.Location.Latitude}
+                  longitude={equ.telematicData.Location.Longitude}
+                >
+                  <button
+                    className={classes.markerBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectEquipment(equ);
+                    }}
+                  >
+                    {/* <img src={images.markerIcon} alt="Machine Icon" /> */}
+                    <MarkerIcon />
+                  </button>
+                </Marker>
+              )
+            );
+          return null;
+        })}
 
-        {selectedObject && (
-          <Popup
-            key={selectedObject.Location.Altitude}
-            latitude={selectedObject.Location.Latitude}
-            longitude={selectedObject.Location.Longitude}
-            anchor="bottom-left"
-            onClose={() => {
-              selectObject(null);
-            }}
-          >
-            <div>
-              {selectedObject.EquipmentHeader.OEMName},
-              {selectedObject.EquipmentHeader.Model} |{"  "}
-              <a
-                target="_new"
-                href="http://en.wikipedia.org/w/index.php?title=Special:Search="
+        {selectedEquipment && (
+          <React.Fragment>
+            {selectedEquipment.telematicData && (
+              <Popup
+                key={selectedEquipment.telematicData.Location.Altitude}
+                latitude={selectedEquipment.telematicData.Location.Latitude}
+                longitude={selectedEquipment.telematicData.Location.Longitude}
+                anchor="bottom-left"
+                onClose={() => {
+                  setSelectEquipment(null);
+                }}
               >
-                See details
-              </a>
-            </div>
-            <img width="100%" src={""} alt="Machine" />
-          </Popup>
+                <div>
+                  {selectedEquipment.telematicData.EquipmentHeader.OEMName},
+                  {selectedEquipment.telematicData.EquipmentHeader.Model} |
+                  {"  "}
+                  <a
+                    target="_new"
+                    href="http://en.wikipedia.org/w/index.php?title=Special:Search="
+                  >
+                    See details
+                  </a>
+                </div>
+                <img width="100%" src={""} alt="Machine" />
+              </Popup>
+            )}
+          </React.Fragment>
         )}
       </ReactMapGL>
     </section>

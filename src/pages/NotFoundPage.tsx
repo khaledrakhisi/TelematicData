@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import Button from "../components/ui/Button";
 
-function NotFound() {
+function NotFoundPage() {
   return (
     <div className={"notFound__container"}>
       <h2 className={"notFound__title notFound__title_ltr"}>
@@ -24,4 +24,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;

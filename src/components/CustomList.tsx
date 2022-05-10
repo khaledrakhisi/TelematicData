@@ -1,32 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import TelematicDataContext from "../store/telematicDataContext";
+
+import { EquipmentListItem } from "./EquipmentListItem";
 
 import classes from "./CustomList.module.scss";
 
 export const CustomList: React.FunctionComponent = () => {
-  const { objects, selectObject } = useContext(TelematicDataContext);
+  const { equipments, setSelectEquipment } = useContext(TelematicDataContext);
 
   return (
     <section className={classes.container}>
       <ul className={classes.customlist}>
-        {objects &&
-          objects.map((obj) => (
-            <li
-              key={obj.EquipmentHeader.id}
-              className={classes.customlist__item}
-              onClick={() => {
-                selectObject(obj);
-              }}
-            >
-              {obj.EquipmentHeader.pic && (
-                <img src={obj.EquipmentHeader.pic} alt="" />
-              )}
-              <p>
-                {obj.EquipmentHeader.OEMName} - {obj.EquipmentHeader.Model}
-              </p>
-            </li>
-          ))}
+        {equipments.length > 0
+          ? equipments.map((equ) => (
+              <EquipmentListItem
+                key={equ.SerialNumber}
+                {...equ}
+                onClickHandle={() => setSelectEquipment(equ)}
+              />
+            ))
+          : "The list is empty, goto equipment section from left panel and define at leat one equipment."}
       </ul>
     </section>
   );

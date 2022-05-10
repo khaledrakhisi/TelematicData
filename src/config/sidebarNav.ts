@@ -7,9 +7,9 @@ export const sidebarNav = [
   },
   {
     link: "/equipments",
-    section: "Equipments",
+    section: "My Equipments",
     icon: "icon-park-outline:ad-product",
-    text: "Equipments",
+    text: "My Equipments",
   },
   {
     link: "/settings",

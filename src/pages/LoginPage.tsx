@@ -2,7 +2,7 @@ import React from "react";
 
 import LoginBox from "../components/Login";
 
-function Login() {
+function LoginPage() {
   return (
     <section>
       <LoginBox />
@@ -10,4 +10,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
+import { equipmentIcons } from "../constants/images";
 import { EWeekDays } from "../interfaces/EWeekDays";
+import { IEquipment } from "../interfaces/IEquipment";
 import { ITelematicData } from "../interfaces/ITelematicData";
 import { ITelematicSettings } from "../interfaces/ITelematicSettings";
 
 type TTelematicDataContext = {
-  objects: Array<ITelematicData>;
+  equipments: Array<IEquipment>;
   markerColor: string;
-  addObject: (mappableObject: ITelematicData) => void;
-  setTelematicData: (tdata: Array<ITelematicData>) => void;
-  selectObject: (mappableObject: ITelematicData | null) => void;
-  selectedObject: ITelematicData | null;
+  updateEquipment: (serialNumber: string, newEqu: IEquipment) => void;
+  setEquipments: (equipments: Array<IEquipment>) => void;
+  setSelectEquipment: (equipment: IEquipment | null) => void;
+  selectedEquipment: IEquipment | null;
   settings: ITelematicSettings | null;
   setSettings: (newSettings: ITelematicSettings) => void;
 };
 
 const TelematicDataContext = React.createContext<TTelematicDataContext>({
-  objects: [],
-  addObject: () => {},
-  setTelematicData: () => {},
-  selectedObject: null,
-  selectObject: () => {},
+  equipments: [],
+  updateEquipment: () => {},
+  setEquipments: () => {},
+  selectedEquipment: null,
+  setSelectEquipment: () => {},
   markerColor: "#000",
   settings: null,
   setSettings: () => {},
@@ -34,8 +36,8 @@ interface IMapContextProviderProps {
 export const TelematicDataContextProvider: React.FunctionComponent<
   IMapContextProviderProps
 > = ({ children }) => {
-  const [objects, setObjects] = useState<ITelematicData[]>([]);
-  const [selectedObject, setSelectedObject] = useState<ITelematicData | null>(
+  const [equipments, setEquipments] = useState<Array<IEquipment>>([]);
+  const [selectedEquipment, setSelectEquipment] = useState<IEquipment | null>(
     null
   );
   const [markerColor, setMarkerColor] = useState<string>("#000");
@@ -49,24 +51,37 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     }
   );
 
-  function addObject(mappableObject: ITelematicData) {
-    setObjects((prev) => [...prev, mappableObject]);
+  function updateEquipment(serialNumber: string, newEqu: IEquipment) {
+    const index = equipments.findIndex((x) => x.SerialNumber === serialNumber);
+    if (index === -1) {
+      return;
+    }
+
+    setEquipments([
+      ...equipments.slice(0, index),
+      newEqu,
+      ...equipments.slice(index + 1),
+    ]);
   }
 
-  function setTelematicData(tdata: ITelematicData[]) {
-    setObjects(tdata);
-  }
+  // function addEquipment(equipment: IEquipment) {
+  //   setEquipments((prev) => [...prev, equipment]);
+  // }
 
-  function selectObject(mappableObject: ITelematicData | null) {
-    setSelectedObject(mappableObject);
-  }
+  // function setEquipments(tdata: IEquipment[]) {
+  //   setObjects(tdata);
+  // }
+
+  // function selectEquipment(equipment: IEquipment | null) {
+  //   setSelectedObject(equipment);
+  // }
 
   const telematicDataValue: TTelematicDataContext = {
-    objects,
-    addObject,
-    setTelematicData,
-    selectObject,
-    selectedObject,
+    equipments,
+    updateEquipment,
+    setEquipments,
+    setSelectEquipment,
+    selectedEquipment,
     markerColor,
     settings,
     setSettings,
