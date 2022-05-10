@@ -39,6 +39,7 @@ export const SettingsForm = () => {
         placeholder={"Fuel percent threshold"}
         label="Fuel threshold"
         value={(settings?.fuelThreshold || 0).toString()}
+        required
       />
       <Input
         ref={operatedOutOfHoursRef}
@@ -47,6 +48,7 @@ export const SettingsForm = () => {
         placeholder={"Enter day number devided by comma (0,1,...)"}
         label="Days off"
         value={(settings?.operatedOutOfHours || 0).toString()}
+        required
       />
       <Input
         ref={underutilizationRef}
@@ -55,6 +57,7 @@ export const SettingsForm = () => {
         placeholder={"underutilization "}
         label="Underutilization thresholds"
         value={(settings?.underutilization || 0).toString()}
+        required
       />
       <Input
         ref={distanceThresholdRef}
@@ -63,6 +66,7 @@ export const SettingsForm = () => {
         placeholder={"Max distance it can travel (Kilometer)"}
         label="Distance thresholds"
         value={(settings?.distanceThreshold || 0).toString()}
+        required
       />
 
       <Button type="submit">Save</Button>

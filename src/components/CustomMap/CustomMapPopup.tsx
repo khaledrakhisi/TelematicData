@@ -6,7 +6,7 @@ import TelematicDataContext from "../../store/telematicDataContext";
 import classes from "./CustomMapPopup.module.scss";
 
 export const CustomMapPopup = () => {
-  const { selectedEquipment, setSelectEquipment } =
+  const { selectedEquipment, setSelectEquipment, filterCheckFuel } =
     useContext(TelematicDataContext);
   if (!selectedEquipment || !selectedEquipment.telematicData) {
     return <div></div>;
@@ -22,22 +22,22 @@ export const CustomMapPopup = () => {
         setSelectEquipment(null);
       }}
     >
-      <div>
+      <h3>
         {selectedEquipment.telematicData.EquipmentHeader.OEMName} -{" "}
-        {selectedEquipment.telematicData.EquipmentHeader.Model} |{" "}
-        <a
-          target="_new"
-          href="http://en.wikipedia.org/w/index.php?title=Special:Search="
-        >
-          See details
-        </a>
-      </div>
-      <img src={`${selectedEquipment.pic}`} alt="Equipment" width={50} />
+        {selectedEquipment.telematicData.EquipmentHeader.Model}
+      </h3>
+      <img src={`${selectedEquipment.pic}`} alt="Equipment" />
       <p>
         Fuel consumed: {selectedEquipment.telematicData.FuelUsed.FuelConsumed}{" "}
         {selectedEquipment.telematicData.FuelUsed.FuelUnits}
       </p>
-      <p>
+      <p
+        style={{
+          color: `${
+            filterCheckFuel(selectedEquipment.telematicData) ? "red" : "#000"
+          }`,
+        }}
+      >
         Fuel remaining: {selectedEquipment.telematicData.FuelRemaining.Percent}%
       </p>
       <p>

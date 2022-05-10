@@ -14,6 +14,7 @@ interface Props {
   readonly?: boolean;
   autocomplete?: string;
   label?: string;
+  required?: boolean;
 }
 
 interface IImperativeHandler {
@@ -55,6 +56,7 @@ const Input = React.forwardRef<IImperativeHandler, Props>((props, ref) => {
         readOnly={props.readonly || false}
         onChange={inputChangeHandler}
         autoComplete={props.autocomplete || "off"}
+        required={props.required}
       />
     </div>
   );

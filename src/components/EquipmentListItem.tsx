@@ -23,7 +23,12 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
   const { data, status, sendRequest } = useFetch(
     `${process.env.REACT_APP_BACKEND_URL}/equipments/:${SerialNumber}`
   );
-  const { updateEquipment, settings } = useContext(TelematicDataContext);
+  const {
+    updateEquipment,
+    filterCheckFuel,
+    filterCheckDistance,
+    filterCheckOverOperating,
+  } = useContext(TelematicDataContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,37 +42,16 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
 
   useEffect(() => {
     if (status === "fetched" && data) {
-      // console.log(equipments);
-
-      /**
-       *
-       * Check the thresholds here
-       */
-
-      let itNeedsAttention: boolean = false;
-      // 1) Fuel Thresholds
-      itNeedsAttention =
-        (data as ITelematicData).FuelRemaining.Percent <
-        settings!.fuelThreshold;
-
-      // 2) operatedOutOfHours
-      const todaysDayofWeek = new Date().getDay();
-      itNeedsAttention =
-        (data as ITelematicData).CumulativeOperatingHours.Hour > 1 &&
-        settings!.operatedOutOfHours.includes(todaysDayofWeek);
-
-      // 3) If Equipment has been stolen (Grand theft auto!)
-      // itNeedsAttention =
-      //   (data as ITelematicData).Distance.Odometer >
-      //   settings!.distanceThreshold;
-
       updateEquipment(SerialNumber, {
         Model,
         OEMName,
         SerialNumber,
         pic,
         telematicData: data as ITelematicData,
-        isNeedAttention: itNeedsAttention,
+        isNeedAttention:
+          filterCheckFuel(data as ITelematicData) ||
+          filterCheckDistance(data as ITelematicData) ||
+          filterCheckOverOperating(data as ITelematicData),
       });
     }
   }, [status]);

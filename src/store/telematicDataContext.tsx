@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
-import { equipmentIcons } from "../constants/images";
 import { EWeekDays } from "../interfaces/EWeekDays";
 import { IEquipment } from "../interfaces/IEquipment";
 import { ITelematicData } from "../interfaces/ITelematicData";
@@ -16,6 +15,12 @@ type TTelematicDataContext = {
   selectedEquipment: IEquipment | null;
   settings: ITelematicSettings | null;
   setSettings: (newSettings: ITelematicSettings) => void;
+
+  // Filter check functions
+  filterCheckFuel: (telematicData: ITelematicData) => boolean;
+  filterCheckDistance: (telematicData: ITelematicData) => boolean;
+  filterCheckOverOperating: (telematicData: ITelematicData) => boolean;
+  filterCheckUnderutilization: (telematicData: ITelematicData) => boolean;
 };
 
 const TelematicDataContext = React.createContext<TTelematicDataContext>({
@@ -27,6 +32,11 @@ const TelematicDataContext = React.createContext<TTelematicDataContext>({
   markerColor: "#000",
   settings: null,
   setSettings: () => {},
+
+  filterCheckFuel: () => false,
+  filterCheckDistance: () => false,
+  filterCheckOverOperating: () => false,
+  filterCheckUnderutilization: () => false,
 });
 
 interface IMapContextProviderProps {
@@ -66,17 +76,27 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     ]);
   }
 
-  // function addEquipment(equipment: IEquipment) {
-  //   setEquipments((prev) => [...prev, equipment]);
-  // }
+  /**
+   *
+   * Check the thresholds here
+   */
 
-  // function setEquipments(tdata: IEquipment[]) {
-  //   setObjects(tdata);
-  // }
-
-  // function selectEquipment(equipment: IEquipment | null) {
-  //   setSelectedObject(equipment);
-  // }
+  const filterCheckFuel = (telematicData: ITelematicData) => {
+    return telematicData.FuelRemaining.Percent < settings!.fuelThreshold;
+  };
+  const filterCheckDistance = (telematicData: ITelematicData) => {
+    return telematicData.Distance.Odometer > settings!.distanceThreshold;
+  };
+  const filterCheckOverOperating = (telematicData: ITelematicData) => {
+    const todaysDayofWeek = new Date().getDay();
+    return (
+      telematicData.CumulativeOperatingHours.Hour > 1 &&
+      settings!.operatedOutOfHours.includes(todaysDayofWeek)
+    );
+  };
+  const filterCheckUnderutilization = (telematicData: ITelematicData) => {
+    return telematicData.CumulativeIdleHours.Hour > settings!.underutilization;
+  };
 
   const telematicDataValue: TTelematicDataContext = {
     equipments,
@@ -87,6 +107,10 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     markerColor,
     settings,
     setSettings,
+    filterCheckFuel,
+    filterCheckDistance,
+    filterCheckOverOperating,
+    filterCheckUnderutilization,
   };
   return (
     <TelematicDataContext.Provider value={telematicDataValue}>

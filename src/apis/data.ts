@@ -67,10 +67,10 @@ export const mocked_telematicData: Array<ITelematicData> = [
       AltitudeUnits: "metre",
     },
     CumulativeIdleHours: {
-      Hour: 1060,
+      Hour: 8,
     },
     CumulativeOperatingHours: {
-      Hour: 3469.4,
+      Hour: 65.4,
     },
     Distance: {
       OdometerUnits: "kilometre",
@@ -81,10 +81,10 @@ export const mocked_telematicData: Array<ITelematicData> = [
     },
     FuelUsed: {
       FuelUnits: "litre",
-      FuelConsumed: 24096,
+      FuelConsumed: 87,
     },
     FuelRemaining: {
-      Percent: 39,
+      Percent: 5,
     },
   },
   {
