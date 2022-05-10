@@ -1,4 +1,5 @@
 import { equipmentIcons } from "../constants/images";
+import { ITelematicData } from "../interfaces/ITelematicData";
 
 export const mocked_equipments = [
   {
@@ -17,10 +18,9 @@ export const mocked_equipments = [
   },
 ];
 
-export const mocked_telematicData = [
+export const mocked_telematicData: Array<ITelematicData> = [
   {
     EquipmentHeader: {
-      id: 1000,
       OEMName: "CAT",
       Model: "M315F",
       SerialNumber: "ABC123456",
@@ -55,7 +55,6 @@ export const mocked_telematicData = [
   },
   {
     EquipmentHeader: {
-      id: 1100,
       OEMName: "Kubota",
       Model: "U27-4",
       SerialNumber: "XYZ123456",
@@ -90,7 +89,6 @@ export const mocked_telematicData = [
   },
   {
     EquipmentHeader: {
-      id: 1200,
       OEMName: "Wacker Neuson",
       Model: "WL32",
       SerialNumber: "MBC123456",

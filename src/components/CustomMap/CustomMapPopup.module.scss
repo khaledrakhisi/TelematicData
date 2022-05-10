@@ -1,0 +1,11 @@
+@use "../../scss/abstracts/" as *;
+
+.popup {
+  color: #000;
+  //   @include flex(flex-start, flex-start);
+  //   flex-direction: column;
+
+  & > img {
+    width: 50px;
+  }
+}

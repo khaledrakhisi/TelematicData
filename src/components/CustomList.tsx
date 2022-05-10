@@ -1,27 +1,58 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 
+import useFetch from "../hooks/useFetch";
+import { IEquipment } from "../interfaces/IEquipment";
 import TelematicDataContext from "../store/telematicDataContext";
 
 import { EquipmentListItem } from "./EquipmentListItem";
+import LoadingSpinner from "./LoadingSpinner";
 
 import classes from "./CustomList.module.scss";
 
 export const CustomList: React.FunctionComponent = () => {
-  const { equipments, setSelectEquipment } = useContext(TelematicDataContext);
+  const { sendRequest, data, status, error } = useFetch(
+    `${process.env.REACT_APP_BACKEND_URL}/equipments`,
+    "GET"
+  );
+  const { equipments, setSelectEquipment, setEquipments } =
+    useContext(TelematicDataContext);
+
+  const ItemClickHandle = useCallback(
+    (e: React.MouseEvent, equ: IEquipment) => {
+      setSelectEquipment(equ);
+    },
+    []
+  );
+
+  // Fetch all of the Equipments
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
+  // Set the fetched equipments to the context
+  useEffect(() => {
+    if (status === "fetched") {
+      setEquipments(data as Array<IEquipment>);
+    }
+  }, [status]);
 
   return (
     <section className={classes.container}>
-      <ul className={classes.customlist}>
-        {equipments.length > 0
-          ? equipments.map((equ) => (
-              <EquipmentListItem
-                key={equ.SerialNumber}
-                {...equ}
-                onClickHandle={() => setSelectEquipment(equ)}
-              />
-            ))
-          : "The list is empty, goto equipment section from left panel and define at leat one equipment."}
-      </ul>
+      {status === "fetched" ? (
+        <ul className={classes.customlist}>
+          {equipments.length > 0
+            ? equipments.map((equ) => (
+                <EquipmentListItem
+                  key={equ.SerialNumber}
+                  {...equ}
+                  onClickHandle={ItemClickHandle}
+                />
+              ))
+            : "The list is empty, please define at leat one equipment from equipment section."}
+        </ul>
+      ) : (
+        <LoadingSpinner asOverlay />
+      )}
     </section>
   );
 };

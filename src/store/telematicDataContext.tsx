@@ -52,7 +52,9 @@ export const TelematicDataContextProvider: React.FunctionComponent<
   );
 
   function updateEquipment(serialNumber: string, newEqu: IEquipment) {
-    const index = equipments.findIndex((x) => x.SerialNumber === serialNumber);
+    const index = equipments.findIndex(
+      (equ) => equ.SerialNumber === serialNumber
+    );
     if (index === -1) {
       return;
     }

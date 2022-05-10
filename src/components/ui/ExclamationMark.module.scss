@@ -1,0 +1,24 @@
+@use "../../scss/abstracts/" as *;
+
+.exclamationIcon {
+  position: absolute;
+  width: 25px;
+  fill: var(--primaryColor);
+
+  left: 5px;
+  top: -10px;
+
+  @include animate(blinkAnimation, 1s, ease, infinite);
+}
+
+@include keyframes(blinkAnimation) {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

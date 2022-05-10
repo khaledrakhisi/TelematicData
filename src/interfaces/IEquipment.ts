@@ -6,4 +6,5 @@ export interface IEquipment {
   SerialNumber: string; //uniq key
   pic: any;
   telematicData: ITelematicData | null;
+  isNeedAttention: boolean;
 }

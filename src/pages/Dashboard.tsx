@@ -1,24 +1,7 @@
-import React, { useContext, useEffect } from "react";
-
 import { CustomList } from "../components/CustomList";
-import { CustomMap } from "../components/CustomMap";
-import { equipmentIcons } from "../constants/images";
-import useFetch from "../hooks/useFetch";
-import { ITelematicData } from "../interfaces/ITelematicData";
-import TelematicDataContext from "../store/telematicDataContext";
+import { CustomMap } from "../components/CustomMap/CustomMap";
 
 function Dashboard() {
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log("fetching");
-
-  //     sendRequest();
-  //   }, 5e3);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
-
   // useEffect(() => {
   //   if (status === "fetched" && data) {
   //     setTelematicData(

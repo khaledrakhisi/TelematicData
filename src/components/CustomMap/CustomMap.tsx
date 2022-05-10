@@ -1,18 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-// import { useSize } from "react-hook-size";
-import ReactMapGL, {
-  // MapRef,
-  Marker,
-  // NavigationControl,
-  Popup,
-} from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
 // import { maxBy, minBy } from "lodash";
 // import WebMercatorViewport from "viewport-mercator-project";
-import { ReactComponent as MarkerIcon } from "../assets/images/marker.svg";
-import { IMappable } from "../interfaces/IMappable";
+import { ReactComponent as MarkerIcon } from "../../assets/images/marker.svg";
+import { IMappable } from "../../interfaces/IMappable";
 // import { ITelematicData } from "../interfaces/ITelematicData";
-import TelematicDataContext from "../store/telematicDataContext";
+import TelematicDataContext from "../../store/telematicDataContext";
+
+import { CustomMapPopup } from "./CustomMapPopup";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 import classes from "./CustomMap.module.scss";
@@ -89,21 +85,23 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
   //   }
   // }, [width, height, objects]);
 
-  useEffect(() => {
-    if (
-      equipments &&
-      equipments.length &&
-      equipments[equipments.length - 1].telematicData
-    ) {
-      setViewport((prev) => ({
-        ...prev,
-        latitude:
-          equipments[equipments.length - 1].telematicData!.Location.Latitude,
-        longitude:
-          equipments[equipments.length - 1].telematicData!.Location.Longitude,
-      }));
-    }
-  }, [equipments]);
+  // useEffect(() => {
+  //   console.log("Happend");
+
+  //   if (
+  //     equipments &&
+  //     equipments.length &&
+  //     equipments[equipments.length - 1].telematicData
+  //   ) {
+  //     setViewport((prev) => ({
+  //       ...prev,
+  //       latitude:
+  //         equipments[equipments.length - 1].telematicData!.Location.Latitude,
+  //       longitude:
+  //         equipments[equipments.length - 1].telematicData!.Location.Longitude,
+  //     }));
+  //   }
+  // }, [equipments]);
 
   useEffect(() => {
     if (selectedEquipment && selectedEquipment.telematicData) {
@@ -143,56 +141,27 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
         {equipments.map((equ) => {
           if (equ.telematicData)
             return (
-              equ.telematicData && (
-                <Marker
-                  key={equ.telematicData.EquipmentHeader.SerialNumber}
-                  latitude={equ.telematicData.Location.Latitude}
-                  longitude={equ.telematicData.Location.Longitude}
+              <Marker
+                key={equ.telematicData.EquipmentHeader.SerialNumber}
+                latitude={equ.telematicData.Location.Latitude}
+                longitude={equ.telematicData.Location.Longitude}
+              >
+                <button
+                  className={classes.markerBtn}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectEquipment(equ);
+                  }}
                 >
-                  <button
-                    className={classes.markerBtn}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectEquipment(equ);
-                    }}
-                  >
-                    {/* <img src={images.markerIcon} alt="Machine Icon" /> */}
-                    <MarkerIcon />
-                  </button>
-                </Marker>
-              )
+                  {/* <img src={images.markerIcon} alt="Machine Icon" /> */}
+                  <MarkerIcon />
+                </button>
+              </Marker>
             );
           return null;
         })}
 
-        {selectedEquipment && (
-          <React.Fragment>
-            {selectedEquipment.telematicData && (
-              <Popup
-                key={selectedEquipment.telematicData.Location.Altitude}
-                latitude={selectedEquipment.telematicData.Location.Latitude}
-                longitude={selectedEquipment.telematicData.Location.Longitude}
-                anchor="bottom-left"
-                onClose={() => {
-                  setSelectEquipment(null);
-                }}
-              >
-                <div>
-                  {selectedEquipment.telematicData.EquipmentHeader.OEMName},
-                  {selectedEquipment.telematicData.EquipmentHeader.Model} |
-                  {"  "}
-                  <a
-                    target="_new"
-                    href="http://en.wikipedia.org/w/index.php?title=Special:Search="
-                  >
-                    See details
-                  </a>
-                </div>
-                <img width="100%" src={""} alt="Machine" />
-              </Popup>
-            )}
-          </React.Fragment>
-        )}
+        <CustomMapPopup />
       </ReactMapGL>
     </section>
   );
