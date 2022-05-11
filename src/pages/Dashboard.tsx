@@ -6,18 +6,7 @@ function Dashboard() {
     <section>
       <h2 className="title">Dashboard</h2>
       <CustomList />
-      <CustomMap
-        showStatusPanel
-        zoomLevel={7}
-        defaultPosition={{
-          Location: {
-            Latitude: 0,
-            Altitude: 0,
-            Longitude: 0,
-            AltitudeUnits: "meter",
-          },
-        }}
-      />
+      <CustomMap showStatusPanel />
     </section>
   );
 }

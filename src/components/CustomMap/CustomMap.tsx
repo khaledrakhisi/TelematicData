@@ -19,14 +19,10 @@ const MAP_CONFIG = {
 };
 
 interface ICustomMapProps {
-  defaultPosition: IMappable;
-  zoomLevel: number;
   showStatusPanel: boolean;
 }
 
 export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
-  defaultPosition,
-  zoomLevel,
   showStatusPanel,
 }) => {
   const [viewport, setViewport] = useState({
