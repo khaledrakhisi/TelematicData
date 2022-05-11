@@ -10,8 +10,8 @@ import LoadingSpinner from "./LoadingSpinner";
 import classes from "./CustomList.module.scss";
 
 export const CustomList: React.FunctionComponent = () => {
-  const { sendRequest, data, status, error } = useFetch();
-  const { equipments, setSelectEquipment, setEquipments, checkAllFilters } =
+  const { sendRequest, data, status } = useFetch();
+  const { equipments, setSelectEquipment, setEquipments } =
     useContext(TelematicDataContext);
 
   const ItemClickHandle = useCallback(

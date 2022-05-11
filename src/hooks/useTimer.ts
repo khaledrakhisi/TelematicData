@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function useTimer(callback: Function, delay: number) {
   const savedCallback = useRef<Function | undefined>();
