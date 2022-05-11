@@ -25,7 +25,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #ffffff62;
+  background: var(--secondaryColor);
+  opacity: 0.5;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -49,13 +49,13 @@ export const CustomMapPopup = () => {
         </span>
       </p>
       <p
-        style={{
-          color: `${
-            filterCheckDistance(selectedEquipment.telematicData)
-              ? "red"
-              : "#000"
-          }`,
-        }}
+      // style={{
+      //   color: `${
+      //     filterCheckDistance(selectedEquipment.telematicData)
+      //       ? "red"
+      //       : "#000"
+      //   }`,
+      // }}
       >
         Travelled: {selectedEquipment.telematicData.Distance.Odometer}{" "}
         {selectedEquipment.telematicData.Distance.OdometerUnits}

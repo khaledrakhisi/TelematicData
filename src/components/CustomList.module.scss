@@ -10,6 +10,8 @@
   margin: $mediumSpacing 0;
   overflow: hidden;
 
+  @include trans(all 300ms ease);
+
   .customlist {
     @include flex(flex-start, flex-start);
     padding: $mediumSpacing;

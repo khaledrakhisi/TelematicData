@@ -1,5 +1,3 @@
-import React from "react";
-
 import ThemeBox from "./ui/ThemeBox";
 import Profile from "./Profile";
 

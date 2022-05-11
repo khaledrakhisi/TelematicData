@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 
-// import { maxBy, minBy } from "lodash";
-// import WebMercatorViewport from "viewport-mercator-project";
 import { ReactComponent as MarkerIcon } from "../../assets/images/marker.svg";
 import { IMappable } from "../../interfaces/IMappable";
-// import { ITelematicData } from "../interfaces/ITelematicData";
 import TelematicDataContext from "../../store/telematicDataContext";
 
 import { CustomMapPopup } from "./CustomMapPopup";
@@ -20,30 +17,6 @@ const MAP_CONFIG = {
   mapboxAccessToken:
     "pk.eyJ1Ijoia2hhbGVkciIsImEiOiJja3BzN2t1OHMwZHQxMm5vY25tY3Q3NHI5In0.akzVvXBLn643NdB94sZaGg",
 };
-
-// const getMinOrMax = (
-//   markers: ITelematicData[],
-//   minOrMax: "max" | "min",
-//   latOrLng: "Latitude" | "Longitude"
-// ) => {
-//   if (minOrMax === "max") {
-//     return (maxBy(markers, (value) => value.Location[latOrLng]) as any)[
-//       latOrLng
-//     ];
-//   }
-//   return (minBy(markers, (value) => value.Location[latOrLng]) as any)[latOrLng];
-// };
-
-// const getBounds = (markers: ITelematicData[]) => {
-//   const maxLat = getMinOrMax(markers, "max", "Latitude");
-//   const minLat = getMinOrMax(markers, "min", "Latitude");
-//   const maxLng = getMinOrMax(markers, "max", "Longitude");
-//   const minLng = getMinOrMax(markers, "min", "Longitude");
-
-//   const southWest = [minLng, minLat];
-//   const northEast = [maxLng, maxLat];
-//   return [southWest, northEast];
-// };
 
 interface ICustomMapProps {
   defaultPosition: IMappable;
@@ -66,42 +39,6 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
 
   const mapContainerRef = React.useRef(null);
   const mapRef = useRef<any>();
-
-  // const { width, height } = useSize(mapContainerRef);
-
-  // useEffect(() => {
-  //   if (width && height && objects && objects.length > 0) {
-  //     const MARKERS_BOUNDS = getBounds(objects);
-  //     setViewport((viewport) => {
-  //       const NEXT_VIEWPORT = new WebMercatorViewport({
-  //         ...(viewport as WebMercatorViewport),
-  //         width,
-  //         height,
-  //       }).fitBounds(MARKERS_BOUNDS as [[number, number], [number, number]], {
-  //         padding: 100,
-  //       });
-  //       return NEXT_VIEWPORT;
-  //     });
-  //   }
-  // }, [width, height, objects]);
-
-  // useEffect(() => {
-  //   console.log("Happend");
-
-  //   if (
-  //     equipments &&
-  //     equipments.length &&
-  //     equipments[equipments.length - 1].telematicData
-  //   ) {
-  //     setViewport((prev) => ({
-  //       ...prev,
-  //       latitude:
-  //         equipments[equipments.length - 1].telematicData!.Location.Latitude,
-  //       longitude:
-  //         equipments[equipments.length - 1].telematicData!.Location.Longitude,
-  //     }));
-  //   }
-  // }, [equipments]);
 
   useEffect(() => {
     if (selectedEquipment && selectedEquipment.telematicData) {
@@ -153,7 +90,6 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
                     setSelectEquipment(equ);
                   }}
                 >
-                  {/* <img src={images.markerIcon} alt="Machine Icon" /> */}
                   <MarkerIcon />
                 </button>
               </Marker>

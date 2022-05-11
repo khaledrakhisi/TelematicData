@@ -8,7 +8,6 @@ import { ITelematicSettings } from "../interfaces/ITelematicSettings";
 
 type TTelematicDataContext = {
   equipments: Array<IEquipment>;
-  markerColor: string;
   updateEquipment: (serialNumber: string, newEqu: IEquipment) => void;
   setEquipments: (equipments: Array<IEquipment>) => void;
   setSelectEquipment: (equipment: IEquipment | null) => void;
@@ -21,6 +20,7 @@ type TTelematicDataContext = {
   filterCheckDistance: (telematicData: ITelematicData) => boolean;
   filterCheckOverOperating: (telematicData: ITelematicData) => boolean;
   filterCheckUnderutilization: (telematicData: ITelematicData) => boolean;
+  checkAllFilters: (telematicData: ITelematicData) => boolean;
 };
 
 const TelematicDataContext = React.createContext<TTelematicDataContext>({
@@ -29,7 +29,6 @@ const TelematicDataContext = React.createContext<TTelematicDataContext>({
   setEquipments: () => {},
   selectedEquipment: null,
   setSelectEquipment: () => {},
-  markerColor: "#000",
   settings: null,
   setSettings: () => {},
 
@@ -37,6 +36,8 @@ const TelematicDataContext = React.createContext<TTelematicDataContext>({
   filterCheckDistance: () => false,
   filterCheckOverOperating: () => false,
   filterCheckUnderutilization: () => false,
+
+  checkAllFilters: () => false,
 });
 
 interface IMapContextProviderProps {
@@ -50,19 +51,20 @@ export const TelematicDataContextProvider: React.FunctionComponent<
   const [selectedEquipment, setSelectEquipment] = useState<IEquipment | null>(
     null
   );
-  const [markerColor, setMarkerColor] = useState<string>("#000");
+  // const [markerColor, setMarkerColor] = useState<string>("#000");
   const [settings, setSettings] = useLocalStorage<ITelematicSettings>(
     "settings",
     {
       fuelThreshold: 10,
       operatedOutOfHours: [EWeekDays.saturday, EWeekDays.sunday],
       distanceThreshold: 5, //Kilometer
+      fetchTimerInterval: 10e3,
     }
   );
 
   function updateEquipment(serialNumber: string, newEqu: IEquipment) {
     const index = equipments.findIndex(
-      (equ) => equ.SerialNumber === serialNumber
+      (equ) => equ.SerialNumber.toLowerCase() === serialNumber.toLowerCase()
     );
     if (index === -1) {
       return;
@@ -102,19 +104,27 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     return ratio >= 1 && ratio <= 3;
   };
 
+  const checkAllFilters = (tdata: ITelematicData) => {
+    return (
+      filterCheckFuel(tdata) ||
+      filterCheckOverOperating(tdata) ||
+      filterCheckUnderutilization(tdata)
+    );
+  };
+
   const telematicDataValue: TTelematicDataContext = {
     equipments,
     updateEquipment,
     setEquipments,
     setSelectEquipment,
     selectedEquipment,
-    markerColor,
     settings,
     setSettings,
     filterCheckFuel,
     filterCheckDistance,
     filterCheckOverOperating,
     filterCheckUnderutilization,
+    checkAllFilters,
   };
   return (
     <TelematicDataContext.Provider value={telematicDataValue}>

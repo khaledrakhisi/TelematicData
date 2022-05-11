@@ -61,7 +61,7 @@ export const Sidebar = () => {
             onClick={openSidebarHandler}
           >
             <div className={classes.sidebar__menu__item__icon}>
-              <Icon icon={nav.icon} />
+              <Icon icon={nav.icon} style={{ fontSize: "64px" }} />
             </div>
             <div className={classes.sidebar__menu__item__txt}>{nav.text}</div>
           </Link>

@@ -10,8 +10,8 @@ import classes from "./SettingsForm.module.scss";
 export const SettingsForm = () => {
   const fuelThresholdRef = useRef<HTMLInputElement>(null);
   const operatedOutOfHoursRef = useRef<HTMLInputElement>(null);
-  const underutilizationRef = useRef<HTMLInputElement>(null);
   const distanceThresholdRef = useRef<HTMLInputElement>(null);
+  const fetchIntervalRef = useRef<HTMLInputElement>(null);
   const { settings, setSettings } = useContext(TelematicDataContext);
 
   const formSubmitHandle = useCallback(
@@ -24,6 +24,7 @@ export const SettingsForm = () => {
           .current!.value.split(",")
           .map((item) => Number(item)),
         distanceThreshold: Number(distanceThresholdRef.current?.value || 5),
+        fetchTimerInterval: Number(fetchIntervalRef.current?.value || 10e3),
       });
     },
     [setSettings]
@@ -56,6 +57,16 @@ export const SettingsForm = () => {
         placeholder={"Max distance it can travel (Kilometer)"}
         label="Distance thresholds"
         value={(settings?.distanceThreshold || 0).toString()}
+        required
+      />
+
+      <Input
+        ref={fetchIntervalRef}
+        type={"text"}
+        id={"fetchInterval"}
+        placeholder={"Enter Fetch Interval (miliseconds)"}
+        label="Fetch Interval"
+        value={(settings?.fetchTimerInterval || 10).toString()}
         required
       />
 

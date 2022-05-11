@@ -1,11 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 
 import useFetch from "../hooks/useFetch";
+import { useTimer } from "../hooks/useTimer";
 import { IEquipment } from "../interfaces/IEquipment";
 import { ITelematicData } from "../interfaces/ITelematicData";
 import TelematicDataContext from "../store/telematicDataContext";
 
 import { ExclamationMark } from "./ui/ExclamationMark";
+import { WaitMark } from "./ui/WaitMark";
 
 import classes from "./EquipmentListItem.module.scss";
 
@@ -17,28 +19,21 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
   OEMName,
   SerialNumber,
   pic,
-  isNeedAttention,
+  telematicData,
+  // isAttentionNeeded,
   onClickHandle,
 }) => {
-  const { data, status, sendRequest } = useFetch(
-    `${process.env.REACT_APP_BACKEND_URL}/equipments/:${SerialNumber}`
-  );
-  const {
-    updateEquipment,
-    filterCheckFuel,
-    filterCheckDistance,
-    filterCheckOverOperating,
-  } = useContext(TelematicDataContext);
+  const { data, status, sendRequest } = useFetch();
+  const { updateEquipment, checkAllFilters, settings } =
+    useContext(TelematicDataContext);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      sendRequest();
-      // clearInterval(interval);
-    }, 1e4);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  useTimer(() => {
+    // Your custom logic here
+    sendRequest(
+      `${process.env.REACT_APP_BACKEND_URL}/equipments/:${SerialNumber}`,
+      "GET"
+    );
+  }, settings!.fetchTimerInterval);
 
   useEffect(() => {
     if (status === "fetched" && data) {
@@ -48,10 +43,6 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
         SerialNumber,
         pic,
         telematicData: data as ITelematicData,
-        isNeedAttention:
-          filterCheckFuel(data as ITelematicData) ||
-          filterCheckDistance(data as ITelematicData) ||
-          filterCheckOverOperating(data as ITelematicData),
       });
     }
   }, [status]);
@@ -67,11 +58,11 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
           SerialNumber,
           pic,
           telematicData: data as ITelematicData,
-          isNeedAttention,
         });
       }}
     >
-      {isNeedAttention && <ExclamationMark />}
+      {data && checkAllFilters(data as ITelematicData) && <ExclamationMark />}
+      {status === "loading" && <WaitMark />}
       {pic && <img src={pic} alt="" />}
       <p>
         {OEMName} - {Model}

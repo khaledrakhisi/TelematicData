@@ -4,7 +4,6 @@ import { useWindowSize } from "usehooks-ts";
 
 import SidebarContext from "../store/sidebarContext";
 
-import SearchBox from "./ui/SearchBox";
 import TopNavRightBox from "./TopNavRightBox";
 
 import classes from "./TopNav.module.scss";
@@ -38,15 +37,9 @@ function TopNav() {
             <Icon icon="eva:close-fill" width="24" />
           </div>
         </div>
-        <div className={classes.search_desktop_wrapper}>
-          <SearchBox />
-        </div>
       </div>
       <TopNavRightBox />
       <br />
-      <div className={classes.search_tablet_wrapper}>
-        <SearchBox />
-      </div>
     </div>
   );
 }

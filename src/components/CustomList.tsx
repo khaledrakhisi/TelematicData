@@ -10,11 +10,8 @@ import LoadingSpinner from "./LoadingSpinner";
 import classes from "./CustomList.module.scss";
 
 export const CustomList: React.FunctionComponent = () => {
-  const { sendRequest, data, status, error } = useFetch(
-    `${process.env.REACT_APP_BACKEND_URL}/equipments`,
-    "GET"
-  );
-  const { equipments, setSelectEquipment, setEquipments } =
+  const { sendRequest, data, status, error } = useFetch();
+  const { equipments, setSelectEquipment, setEquipments, checkAllFilters } =
     useContext(TelematicDataContext);
 
   const ItemClickHandle = useCallback(
@@ -26,10 +23,10 @@ export const CustomList: React.FunctionComponent = () => {
 
   // Fetch all of the Equipments
   useEffect(() => {
-    sendRequest();
+    sendRequest(`${process.env.REACT_APP_BACKEND_URL}/equipments`, "GET");
   }, []);
 
-  // Set the fetched equipments to the context
+  // Set the fetched equipments to the context just once
   useEffect(() => {
     if (status === "fetched") {
       setEquipments(data as Array<IEquipment>);

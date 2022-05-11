@@ -1,0 +1,10 @@
+@use "../../scss/abstracts/" as *;
+
+.waitIcon {
+  position: absolute;
+  width: 28px;
+  fill: var(--primaryColor);
+
+  left: 5px;
+  top: -5px;
+}
