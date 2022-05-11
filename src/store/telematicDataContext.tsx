@@ -57,7 +57,6 @@ export const TelematicDataContextProvider: React.FunctionComponent<
       fuelThreshold: 10,
       operatedOutOfHours: [EWeekDays.saturday, EWeekDays.sunday],
       distanceThreshold: 5, //Kilometer
-      underutilization: 3,
     }
   );
 
@@ -95,7 +94,12 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     );
   };
   const filterCheckUnderutilization = (telematicData: ITelematicData) => {
-    return telematicData.CumulativeIdleHours.Hour > settings!.underutilization;
+    const ratio = Math.floor(
+      telematicData.CumulativeIdleHours.Hour /
+        telematicData.CumulativeOperatingHours.Hour
+    );
+
+    return ratio >= 1 && ratio <= 3;
   };
 
   const telematicDataValue: TTelematicDataContext = {

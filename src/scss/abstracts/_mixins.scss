@@ -19,6 +19,12 @@
   -webkit-box-orient: vertical;
 }
 
+@mixin overflowTitleEllipses {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @mixin raisedStyle() {
   border-left: 1px solid #fff;
   border-top: 1px solid #fff;

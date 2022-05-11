@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 
 // import { maxBy, minBy } from "lodash";
 // import WebMercatorViewport from "viewport-mercator-project";

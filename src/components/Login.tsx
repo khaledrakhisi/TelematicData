@@ -4,14 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import { images } from "../constants/images";
-// import langContextObj from "../../store/langContext";
 import LoginContext from "../store/loginContext";
 
 import classes from "./Login.module.scss";
 
 function LoginBox() {
   const loginCtx = useContext(LoginContext);
-  // const langCtx = useContext(langContextObj);
   const userNameRef = useRef<HTMLInputElement>(null);
   const errorMessageRef = useRef<HTMLSpanElement>(null);
   const navigate = useNavigate();
@@ -39,15 +37,16 @@ function LoginBox() {
     <div className={`${classes.container}`}>
       <div className={classes.loginBox}>
         <div className={classes.logo}>
-          <img src={images.logo} alt="digikala" />
+          <img src={images.logo.default} alt="flexcavo" />
         </div>
-        <h2 className={classes.title}>{"loginPage"}</h2>
+        <h2 className={classes.title}>{""}</h2>
         <form onSubmit={loginHandler}>
           <Input
             ref={userNameRef}
             type={"text"}
             id={"userName"}
             placeholder={"admin"}
+            label="User name"
           />
           <span ref={errorMessageRef} className={classes.errorMessage}>
             {"errorMessage"}
@@ -57,23 +56,21 @@ function LoginBox() {
             id={"pass"}
             value={"admin"}
             readonly={true}
+            label="Password"
           />
-          <Button type="submit">{"login"}</Button>
+          <Button type="submit">{"Login"}</Button>
           <Link className={classes.forgat_pass} to="/">
-            {"forgetPass"}
+            {"Forgot your password ?"}
           </Link>
           <div className={classes.checkbox}>
             <input type="checkbox" id="rememberMe" />
-            <label htmlFor="rememberMe">{"rememberMe"}</label>
+            <label htmlFor="rememberMe">{"Remember me"}</label>
           </div>
         </form>
       </div>
 
       <div className={classes.keyPic}>
-        <img
-          src={require("../assets/images/Revenue-cuate.svg").default}
-          alt="illustrator key"
-        />
+        <img src={images.dashboard} alt="illustrator key" />
       </div>
     </div>
   );

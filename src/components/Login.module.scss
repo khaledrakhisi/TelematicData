@@ -21,15 +21,18 @@ html {
 .loginBox {
   @include flex();
   flex-direction: column;
-  width: 400px;
-  padding: 0 2rem 4rem;
+  position: relative;
+  max-width: 400px;
+  padding: $largeSpacing;
+  margin: $largeSpacing;
   background-color: #f9f9fa;
   color: #424750;
   border-radius: $mediumBorderRadius;
   box-shadow: $mainBoxShadow;
 
   .logo {
-    margin-top: -2rem;
+    position: absolute;
+    top: -2rem;
     width: 200px;
   }
 
@@ -42,7 +45,6 @@ html {
   }
 
   & input,
-  & label,
   & a {
     background-color: #f9f9fa !important;
     color: #424750;

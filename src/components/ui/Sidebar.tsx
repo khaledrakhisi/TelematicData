@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useWindowSize } from "usehooks-ts";
 
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
-import { ReactComponent as MiniLogo } from "../../assets/images/mini-logo.svg";
 import { sidebarNav } from "../../config/sidebarNav";
-import { images } from "../../constants/images";
 import LoginContext from "../../store/loginContext";
 import SidebarContext from "../../store/sidebarContext";
 
@@ -46,18 +44,11 @@ export const Sidebar = () => {
       }`}
     >
       <div className={classes.sidebar__logo}>
-        {/* <img src={images.logo} alt="flexcavo" />
-        <img src={images.miniLogo} alt="flexcavo" /> */}
         <Logo
           className={`${classes.logosvg} ${
             !sidebarCtx.isOpen && classes.sidebar_close
           }`}
         />
-        {/* <MiniLogo
-          className={`${classes.minilogosvg} ${
-            !sidebarCtx.isOpen && classes.sidebar_close
-          }`}
-        /> */}
       </div>
       <div className={classes.sidebar__menu}>
         {sidebarNav.map((nav, index) => (
@@ -72,9 +63,7 @@ export const Sidebar = () => {
             <div className={classes.sidebar__menu__item__icon}>
               <Icon icon={nav.icon} />
             </div>
-            <div className={classes.sidebar__menu__item__txt}>
-              {nav.section}
-            </div>
+            <div className={classes.sidebar__menu__item__txt}>{nav.text}</div>
           </Link>
         ))}
       </div>

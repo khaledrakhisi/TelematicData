@@ -16,6 +16,13 @@ export const mocked_equipments = [
     telematicData: null,
     SerialNumber: "XYZ123456",
   },
+  {
+    OEMName: "Wacker Neuson",
+    Model: "WL32",
+    pic: equipmentIcons[9],
+    telematicData: null,
+    SerialNumber: "MBC123456",
+  },
 ];
 
 export const mocked_telematicData: Array<ITelematicData> = [
@@ -70,7 +77,7 @@ export const mocked_telematicData: Array<ITelematicData> = [
       Hour: 8,
     },
     CumulativeOperatingHours: {
-      Hour: 65.4,
+      Hour: 4,
     },
     Distance: {
       OdometerUnits: "kilometre",
@@ -111,7 +118,7 @@ export const mocked_telematicData: Array<ITelematicData> = [
       Odometer: 2702.4,
     },
     EngineStatus: {
-      Running: false,
+      Running: true,
     },
     FuelUsed: {
       FuelUnits: "litre",

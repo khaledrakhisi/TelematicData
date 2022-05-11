@@ -22,6 +22,6 @@
   & > p {
     width: 100px;
     text-align: center;
-    @include overflowEllipses();
+    @include overflowTitleEllipses();
   }
 }

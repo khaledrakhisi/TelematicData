@@ -1,20 +1,20 @@
 export const sidebarNav = [
   {
     link: "/",
-    section: "Dashboard",
-    icon: "lucide:layout-dashboard", //width:"20"
+    section: "dashboard",
+    icon: "lucide:layout-dashboard",
     text: "Dashboard",
   },
   {
     link: "/equipments",
-    section: "My Equipments",
-    icon: "icon-park-outline:ad-product",
+    section: "equipments",
+    icon: "healthicons:machinery-outline",
     text: "My Equipments",
   },
   {
     link: "/settings",
-    section: "Settings",
-    icon: "icon-park-outline:ad-product",
+    section: "settings",
+    icon: "ant-design:control-outlined",
     text: "Settings",
   },
 ];

@@ -13,7 +13,7 @@
   .customlist {
     @include flex(flex-start, flex-start);
     padding: $mediumSpacing;
-    overflow: hidden;
+    overflow-x: scroll;
     width: 100%;
   }
 }

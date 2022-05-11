@@ -23,7 +23,6 @@ export const SettingsForm = () => {
         operatedOutOfHours: operatedOutOfHoursRef
           .current!.value.split(",")
           .map((item) => Number(item)),
-        underutilization: Number(underutilizationRef.current?.value || 3),
         distanceThreshold: Number(distanceThresholdRef.current?.value || 5),
       });
     },
@@ -48,15 +47,6 @@ export const SettingsForm = () => {
         placeholder={"Enter day number devided by comma (0,1,...)"}
         label="Days off"
         value={(settings?.operatedOutOfHours || 0).toString()}
-        required
-      />
-      <Input
-        ref={underutilizationRef}
-        type={"text"}
-        id={"underutilization"}
-        placeholder={"underutilization "}
-        label="Underutilization thresholds"
-        value={(settings?.underutilization || 0).toString()}
         required
       />
       <Input

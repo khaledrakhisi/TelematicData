@@ -1,9 +1,8 @@
 export const images = {
   logo: require("../assets/images/logo.svg"),
   miniLogo: require("../assets/images/mini-logo.svg"),
-  avt: require("../assets/images/avatar.jpg"),
   logKey: require("../assets/images/Reset password-pana.svg"),
-  dashboard: require("../assets/images/Revenue-cuate.svg"),
+  dashboard: require("../assets/images/digital-partner.png"),
   notFound: require("../assets/images/Oops 404 Error with a broken robot-cuate.svg"),
 };
 

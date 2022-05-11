@@ -6,8 +6,14 @@ import TelematicDataContext from "../../store/telematicDataContext";
 import classes from "./CustomMapPopup.module.scss";
 
 export const CustomMapPopup = () => {
-  const { selectedEquipment, setSelectEquipment, filterCheckFuel } =
-    useContext(TelematicDataContext);
+  const {
+    selectedEquipment,
+    setSelectEquipment,
+    filterCheckFuel,
+    filterCheckOverOperating,
+    filterCheckUnderutilization,
+    filterCheckDistance,
+  } = useContext(TelematicDataContext);
   if (!selectedEquipment || !selectedEquipment.telematicData) {
     return <div></div>;
   }
@@ -28,21 +34,74 @@ export const CustomMapPopup = () => {
       </h3>
       <img src={`${selectedEquipment.pic}`} alt="Equipment" />
       <p>
-        Fuel consumed: {selectedEquipment.telematicData.FuelUsed.FuelConsumed}{" "}
-        {selectedEquipment.telematicData.FuelUsed.FuelUnits}
+        Fuel:{" "}
+        <span>
+          Consumed: {selectedEquipment.telematicData.FuelUsed.FuelConsumed} |{" "}
+        </span>
+        <span
+          style={{
+            color: `${
+              filterCheckFuel(selectedEquipment.telematicData) ? "red" : "#000"
+            }`,
+          }}
+        >
+          Remaining: {selectedEquipment.telematicData.FuelRemaining.Percent}%
+        </span>
       </p>
       <p
         style={{
           color: `${
-            filterCheckFuel(selectedEquipment.telematicData) ? "red" : "#000"
+            filterCheckDistance(selectedEquipment.telematicData)
+              ? "red"
+              : "#000"
           }`,
         }}
       >
-        Fuel remaining: {selectedEquipment.telematicData.FuelRemaining.Percent}%
-      </p>
-      <p>
         Travelled: {selectedEquipment.telematicData.Distance.Odometer}{" "}
         {selectedEquipment.telematicData.Distance.OdometerUnits}
+      </p>
+      <p>
+        Work:{" "}
+        <span
+          style={{
+            color: `${
+              filterCheckOverOperating(selectedEquipment.telematicData)
+                ? "red"
+                : "#000"
+            }`,
+          }}
+        >
+          Operating:
+          {selectedEquipment.telematicData.CumulativeOperatingHours.Hour}
+        </span>{" "}
+        |{" "}
+        <span
+          style={{
+            color: `${
+              filterCheckUnderutilization(selectedEquipment.telematicData)
+                ? "red"
+                : "#000"
+            }`,
+          }}
+        >
+          Idle: {selectedEquipment.telematicData.CumulativeIdleHours.Hour}
+        </span>
+      </p>
+      <p>
+        Engine:{" "}
+        <span
+          style={{
+            color: `${
+              selectedEquipment.telematicData.EngineStatus.Running
+                ? "green"
+                : "#000"
+            }`,
+          }}
+        >
+          {selectedEquipment.telematicData.EngineStatus.Running
+            ? "Running"
+            : "Off"}
+        </span>
       </p>
     </Popup>
   );
