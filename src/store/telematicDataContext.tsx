@@ -89,6 +89,7 @@ export const TelematicDataContextProvider: React.FunctionComponent<
   };
   const filterCheckOverOperating = (telematicData: ITelematicData) => {
     const todaysDayofWeek = new Date().getDay();
+
     return (
       telematicData.CumulativeOperatingHours.Hour > 1 &&
       settings!.operatedOutOfHours.includes(todaysDayofWeek)
