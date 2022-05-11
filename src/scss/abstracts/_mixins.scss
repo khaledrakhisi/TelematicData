@@ -51,6 +51,12 @@
   }
 }
 
+@mixin desktop {
+  @media screen and (max-width: $desktop-width) {
+    @content;
+  }
+}
+
 @mixin animate(
   $animation,
   $duration: 400ms,

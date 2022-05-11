@@ -2,7 +2,7 @@ const EquipmentPage = () => {
   return (
     <section>
       <h2 className="title">{"My Equipments"}</h2>
-      list
+      In here you can define (add/delete/update) your equipments.
     </section>
   );
 };

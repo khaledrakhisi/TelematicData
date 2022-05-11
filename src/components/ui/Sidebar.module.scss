@@ -31,15 +31,16 @@
   }
 
   &__logo {
-    text-align: center;
-
     .logosvg {
-      margin: $largeSpacing auto;
+      margin: $largeSpacing 0 $largeSpacing $largeSpacing;
       width: 80%;
       height: 50px;
       @include trans(opacity 1s ease-out 1s);
+
       &.sidebar_close {
-        opacity: 0;
+        @media screen and (max-width: $desktop-width) {
+          opacity: 0;
+        }
       }
 
       @include mobile {
@@ -66,7 +67,7 @@
       position: relative;
       margin-bottom: 2rem;
       padding-left: 16px;
-      transition: all 0.3s ease-in-out;
+      @include trans(all 0.3s ease-in-out);
 
       &:hover {
         color: var(--primaryColor);

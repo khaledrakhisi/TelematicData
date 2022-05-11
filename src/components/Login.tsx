@@ -34,7 +34,7 @@ function LoginBox() {
   }
 
   return (
-    <div className={`${classes.container}`}>
+    <section className={`${classes.container}`}>
       <div className={classes.loginBox}>
         <div className={classes.logo}>
           <img src={images.logo.default} alt="flexcavo" />
@@ -53,7 +53,7 @@ function LoginBox() {
           </span>
           <Input
             type={"password"}
-            id={"pass"}
+            id={"password"}
             value={"admin"}
             readonly={true}
             label="Password"
@@ -69,10 +69,10 @@ function LoginBox() {
         </form>
       </div>
 
-      <div className={classes.keyPic}>
+      <div className={classes.keyPic} data-testid="keypic">
         <img src={images.dashboard} alt="illustrator key" />
       </div>
-    </div>
+    </section>
   );
 }
 

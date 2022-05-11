@@ -31,14 +31,3 @@ export const fake_fetch = async <T>(
     }
   });
 };
-
-// export const fetchUpdate = async (): Promise<IApiState<Array<IHobby>>> => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({
-//         status: "success",
-//         data: MOCK_HOBBIES,
-//       });
-//     }, FAKE_API_DELAY);
-//   });
-// };

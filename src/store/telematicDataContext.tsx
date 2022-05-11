@@ -51,7 +51,6 @@ export const TelematicDataContextProvider: React.FunctionComponent<
   const [selectedEquipment, setSelectEquipment] = useState<IEquipment | null>(
     null
   );
-  // const [markerColor, setMarkerColor] = useState<string>("#000");
   const [settings, setSettings] = useLocalStorage<ITelematicSettings>(
     "settings",
     {

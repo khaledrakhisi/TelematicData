@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import useFetch from "../hooks/useFetch";
 import { useTimer } from "../hooks/useTimer";
@@ -20,7 +20,6 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
   SerialNumber,
   pic,
   telematicData,
-  // isAttentionNeeded,
   onClickHandle,
 }) => {
   const { data, status, sendRequest } = useFetch();
@@ -28,7 +27,6 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
     useContext(TelematicDataContext);
 
   useTimer(() => {
-    // Your custom logic here
     sendRequest(
       `${process.env.REACT_APP_BACKEND_URL}/equipments/:${SerialNumber}`,
       "GET"

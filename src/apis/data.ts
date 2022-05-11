@@ -5,7 +5,7 @@ export const mocked_equipments = [
   {
     OEMName: "CAT",
     Model: "M315F",
-    pic: equipmentIcons[0],
+    pic: equipmentIcons[4],
     telematicData: null,
     SerialNumber: "ABC123456",
   },

@@ -12,7 +12,8 @@ html {
     width: 800px;
     min-width: 600px;
     order: 2;
-    @media screen and (max-width: 992px) {
+
+    @include desktop {
       display: none;
     }
   }

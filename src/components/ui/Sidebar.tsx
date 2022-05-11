@@ -38,7 +38,8 @@ export const Sidebar = () => {
   }, [location]);
 
   return (
-    <div
+    <aside
+      data-testid="sidebar"
       className={`${classes.sidebar} ${
         !sidebarCtx.isOpen && classes.sidebar_close
       }`}
@@ -80,6 +81,6 @@ export const Sidebar = () => {
           <div className={classes.sidebar__menu__item__txt}>{"logout"}</div>
         </Link>
       </div>
-    </div>
+    </aside>
   );
 };
