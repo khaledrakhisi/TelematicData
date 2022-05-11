@@ -1,12 +1,12 @@
 ## وَكَانَ فَضْلُ اللَّهِ عَلَيْكَ عَظِيمًا - 113 سورة النساء
 
-# Hobby
+# Live Dashboard
 
-A simple well-designed react app using redux and typescript
+Just a simple live dashboard based on telematic data
 
 ## Description
 
-A simple well-designed react app using redux and typescript
+Just a simple live dashboard based on telematic data
 
 ## Getting Started
 
@@ -34,6 +34,8 @@ No live demo
 ### Demo photos
 
 ![Demo snapshot #1](./public/demo1.png)
+![Demo snapshot #2](./public/demo2.png)
+![Demo snapshot #3](./public/demo3.png)
 
 ## Styles and Design system
 
