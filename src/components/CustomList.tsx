@@ -18,7 +18,7 @@ export const CustomList: React.FunctionComponent = () => {
     (e: React.MouseEvent, equ: IEquipment) => {
       setSelectEquipment(equ);
     },
-    []
+    [setSelectEquipment]
   );
 
   // Fetch all of the Equipments

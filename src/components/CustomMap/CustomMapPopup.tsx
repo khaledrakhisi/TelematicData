@@ -12,7 +12,6 @@ export const CustomMapPopup = () => {
     filterCheckFuel,
     filterCheckOverOperating,
     filterCheckUnderutilization,
-    filterCheckDistance,
   } = useContext(TelematicDataContext);
   if (!selectedEquipment || !selectedEquipment.telematicData) {
     return <div></div>;

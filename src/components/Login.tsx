@@ -49,7 +49,7 @@ function LoginBox() {
             label="User name"
           />
           <span ref={errorMessageRef} className={classes.errorMessage}>
-            {"errorMessage"}
+            {"the username is 'admin'"}
           </span>
           <Input
             type={"password"}
