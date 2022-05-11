@@ -26,6 +26,8 @@ Just a simple live dashboard based on telematic data
 
 ## Overview
 
+![wireframe](./public/wireframe.png)
+
 ## Demo
 
 ### Live Demo

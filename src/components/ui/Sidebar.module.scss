@@ -1,12 +1,10 @@
 @use "../../scss/abstracts/" as *;
-@use "sass:math";
 
 .sidebar {
   @include flex(stretch, center);
   flex-direction: column;
   background-color: var(--bgc);
   color: var(--text-color) !important;
-  // border: 1px solid blue;
   width: $sideBarOpenWidth;
   height: 100vh;
   position: fixed;
@@ -38,7 +36,10 @@
       @include trans(opacity 1s ease-out 1s);
 
       &.sidebar_close {
-        @media screen and (max-width: $desktop-width) {
+        @include mobile {
+          opacity: 1;
+        }
+        @media (min-width: 768px) {
           opacity: 0;
         }
       }
