@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { MapRef, Marker } from "react-map-gl";
 
 import { ReactComponent as MarkerIcon } from "../../assets/images/marker.svg";
-import { IMappable } from "../../interfaces/IMappable";
+import SidebarContext from "../../store/sidebarContext";
 import TelematicDataContext from "../../store/telematicDataContext";
 
 import { CustomMapPopup } from "./CustomMapPopup";
@@ -32,10 +32,16 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
   });
   const { equipments, setSelectEquipment, selectedEquipment } =
     useContext(TelematicDataContext);
-  // console.log(equipments);
+
+  const { isOpen } = useContext(SidebarContext);
 
   const mapContainerRef = React.useRef(null);
-  const mapRef = useRef<any>();
+  const mapRef = useRef<MapRef | null>(null);
+
+  // This useEffect will resize the map after sidebar resized the window
+  useEffect(() => {
+    setTimeout(() => mapRef.current?.resize(), 600);
+  }, [isOpen]);
 
   useEffect(() => {
     if (selectedEquipment && selectedEquipment.telematicData) {
