@@ -8,7 +8,10 @@ import { ITelematicSettings } from "../interfaces/ITelematicSettings";
 
 type TTelematicDataContext = {
   equipments: Array<IEquipment>;
-  updateEquipment: (serialNumber: string, newEqu: IEquipment) => void;
+  updateEquipment: (
+    serialNumber: string,
+    newTelematicData: ITelematicData
+  ) => void;
   setEquipments: (equipments: Array<IEquipment>) => void;
   setSelectEquipment: (equipment: IEquipment | null) => void;
   selectedEquipment: IEquipment | null;
@@ -61,19 +64,26 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     }
   );
 
-  function updateEquipment(serialNumber: string, newEqu: IEquipment) {
-    const index = equipments.findIndex(
-      (equ) => equ.SerialNumber.toLowerCase() === serialNumber.toLowerCase()
-    );
-    if (index === -1) {
-      return;
-    }
-
+  function updateEquipment(
+    serialNumber: string,
+    newTelematicData: ITelematicData
+  ) {
     setEquipments([
-      ...equipments.slice(0, index),
-      newEqu,
-      ...equipments.slice(index + 1),
+      ...equipments.map((item) =>
+        item.SerialNumber === serialNumber
+          ? {
+              ...item,
+              telematicData: newTelematicData,
+            }
+          : item
+      ),
     ]);
+
+    // setEquipments([
+    //   ...equipments.slice(0, index),
+    //   newEqu,
+    //   ...equipments.slice(index + 1),
+    // ]);
   }
 
   /**

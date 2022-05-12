@@ -35,13 +35,7 @@ export const EquipmentListItem: React.FunctionComponent<IEquipmentProps> = ({
 
   useEffect(() => {
     if (status === "fetched" && data) {
-      updateEquipment(SerialNumber, {
-        Model,
-        OEMName,
-        SerialNumber,
-        pic,
-        telematicData: data as ITelematicData,
-      });
+      updateEquipment(SerialNumber, data as ITelematicData);
     }
   }, [status]);
 

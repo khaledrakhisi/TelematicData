@@ -32,6 +32,7 @@ export const CustomMap: React.FunctionComponent<ICustomMapProps> = ({
   });
   const { equipments, setSelectEquipment, selectedEquipment } =
     useContext(TelematicDataContext);
+  // console.log(equipments);
 
   const mapContainerRef = React.useRef(null);
   const mapRef = useRef<any>();
