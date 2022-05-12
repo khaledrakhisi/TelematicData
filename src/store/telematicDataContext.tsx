@@ -78,12 +78,6 @@ export const TelematicDataContextProvider: React.FunctionComponent<
           : item
       ),
     ]);
-
-    // setEquipments([
-    //   ...equipments.slice(0, index),
-    //   newEqu,
-    //   ...equipments.slice(index + 1),
-    // ]);
   }
 
   /**
