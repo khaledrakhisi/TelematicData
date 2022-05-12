@@ -59,8 +59,8 @@ describe("Login Functionality", () => {
 
     fireEvent.click(loginButton!);
     waitFor(() => {
-      screen.getByText(/errormessage/i);
+      screen.getByText(/the username is 'admin'/i);
     });
-    expect(screen.getByText(/errormessage/i)).toBeInTheDocument();
+    expect(screen.getByText(/the username is 'admin'/i)).toBeInTheDocument();
   });
 });

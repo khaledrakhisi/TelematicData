@@ -2,6 +2,9 @@
  * Pseudo APIs
  */
 
+import { IEquipment } from "../interfaces/IEquipment";
+import { ITelematicData } from "../interfaces/ITelematicData";
+
 import { mocked_equipments, mocked_telematicData } from "./data";
 
 const FAKE_API_DELAY: number = 2e3;

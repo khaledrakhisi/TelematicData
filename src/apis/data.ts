@@ -23,6 +23,13 @@ export const mocked_equipments = [
     telematicData: null,
     SerialNumber: "MBC123456",
   },
+  {
+    OEMName: "VOLVO",
+    Model: "FH",
+    pic: equipmentIcons[7],
+    telematicData: null,
+    SerialNumber: "HGK123456",
+  },
 ];
 
 export const mocked_telematicData: Array<ITelematicData> = [
@@ -126,6 +133,40 @@ export const mocked_telematicData: Array<ITelematicData> = [
     },
     FuelRemaining: {
       Percent: 39,
+    },
+  },
+  {
+    EquipmentHeader: {
+      OEMName: "VOLVO",
+      Model: "FH",
+      SerialNumber: "HGK123456",
+      SnapshotTime: new Date("2022-04-12T07:00:00Z"),
+    },
+    Location: {
+      Latitude: 51.3,
+      Longitude: 13.44,
+      Altitude: 70,
+      AltitudeUnits: "metre",
+    },
+    CumulativeIdleHours: {
+      Hour: 6,
+    },
+    CumulativeOperatingHours: {
+      Hour: 8,
+    },
+    Distance: {
+      OdometerUnits: "kilometre",
+      Odometer: 67,
+    },
+    EngineStatus: {
+      Running: true,
+    },
+    FuelUsed: {
+      FuelUnits: "litre",
+      FuelConsumed: 24096,
+    },
+    FuelRemaining: {
+      Percent: 5,
     },
   },
 ];
