@@ -68,8 +68,8 @@ export const TelematicDataContextProvider: React.FunctionComponent<
     serialNumber: string,
     newTelematicData: ITelematicData
   ) {
-    setEquipments([
-      ...equipments.map((item) =>
+    setEquipments((prev) => [
+      ...prev.map((item) =>
         item.SerialNumber === serialNumber
           ? {
               ...item,
