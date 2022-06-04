@@ -2,11 +2,11 @@
 
 # Live Dashboard
 
-Just a simple live dashboard based on telematic data
+This app takes telematic data from devices installed on remote construction machines and display this data and location on the map as a live dashboard.
 
 ## Description
 
-Just a simple live dashboard based on telematic data
+This app takes telematic data from devices installed on remote construction machines and display this data and location on the map as a live dashboard.
 
 ## Getting Started
 
