@@ -8,7 +8,7 @@ This app takes telematic data from devices installed on remote construction mach
 
 This app takes telematic data from devices installed on remote construction machines and display this data and location on the map as a live dashboard.
 
-This app has one technical challenge and it is being really responsive to verietry of screen sizes. it has multi theme in an efficient way. If you are looking for a way to implement theme using Context API then take look at it.
+This app has one technical challenge and it is being really responsive to variety of screen sizes. it has multi theme in an efficient way. If you are looking for a way to implement theme using Context API then take look at it.
 
 ## Getting Started
 
