@@ -19,7 +19,6 @@ function LoginBox() {
     e.preventDefault();
     isValid = userNameRef.current?.value === "admin";
     if (userNameRef.current) {
-      // console.log(userNameRef.current, isValid);
       if (isValid) {
         loginCtx.toggleLogin();
         navigate("/");
